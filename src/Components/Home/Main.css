@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Syncopate:wght@700&display=swap');
+
+.textFont {
+    font-family: 'Syncopate';
+}
+
+.ImageGroupe {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* La scroll bar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 20px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+/*----------------------------*/
+
+.imgSizeIMGGRP {
+    width: 735px;
+    height: 393px;
+    border-radius: 10px;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
