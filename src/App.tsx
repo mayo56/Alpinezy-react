@@ -12,7 +12,7 @@ function App() {
 
       {/* Login et tos de l'app */}
       <Route path="/tos" element={<TOS />}/>
-      <Route path="/login" element={<Login />}/>
+      <Route path="/login/:id" element={<Login />}/>
 
       {/* Coeur de l'app */}
       <Route path="/thread" element={<Thread />}/>

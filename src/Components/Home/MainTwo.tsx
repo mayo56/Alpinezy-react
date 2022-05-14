@@ -21,7 +21,7 @@ const MainTwo = () => {
     //text
 
     //images
-    const MTimages = "w-[90%] m-auto rounded-lg shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] mb-[10px]"
+    const MTimages = "w-[90%] m-auto rounded-lg shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] mb-[10px] transition ease-in-out delay-200  hover:-translate-y-1 hover:scale-110 duration-[800ms] hover:shadow-[0_35px_60px_-15px_rgba(0,0,0,25)]"
     return (
         <div className='mt-[-235px] sm:mt-[-280px] md:mt-[-310px] lg:mt-[-340px] xl:mt-[-400px] 2xl:mt-[-460px]'>
             {/* Slogan de l'app */}

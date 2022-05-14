@@ -4,6 +4,21 @@ import './index.css';
 import App from './App.tsx';
 import { BrowserRouter } from 'react-router-dom';
 
+///////////////////////////////////////////////--------------
+// ########### //
+//  Socket.io  //
+// ########### //
+import { io } from 'socket.io-client';
+
+const socket = io("ws://192.168.1.38:3001")
+socket.on("connect", () => {
+  console.log(socket.id)
+  socket.on('hello', (id, message) => {
+    if (socket.id !== id) return;
+    console.log(message)
+  })
+})
+///////////////////////////////////////////////--------------
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
