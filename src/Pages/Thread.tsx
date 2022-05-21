@@ -1,10 +1,16 @@
 import React from 'react';
-import TopBar from '../Components/ComponentsBar/TopBar';
+import ThreadController from '../Components/Thread/ThreadController';
+
 
 const Thread = () => {
+    setInterval(() => {
+        if (!localStorage.getItem("Alpinezy")) {
+            window.location.href = "/login/signin";
+        };
+    }, 10000)
     return (
-        <div>
-            <TopBar />
+        <div className='bg-[#171723] h-auto'>
+            <ThreadController />
         </div>
     );
 };

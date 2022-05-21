@@ -41,6 +41,7 @@ const SignUp = () => {
                             document.getElementById("error")!.innerHTML = "Une erreur s'est produite"
                         } else {
                             localStorage.setItem("Alpinezy", res.data.token)
+                            localStorage.setItem("AlpinezyUsername", res.data.userinfo.username)
                             window.location.href = "/thread";
                         }
                     })
@@ -94,7 +95,7 @@ const SignUp = () => {
                         type={"submit"}
                         value={"Créer ton compte"}
                         className={"p-[5px] bg-[#61AF7F] rounded-lg hover:cursor-pointer "} />
-                    <h1 id="error" className='text-[red] text-center w-auto'></h1>
+                    <div id="error" className='text-[red] text-center w-auto'></div>
                 </form>
             </div>
             <br />
