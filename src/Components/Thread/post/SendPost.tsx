@@ -27,8 +27,8 @@ const SendPost = () => {
 
                 {/* Boutons post! et image */}
                 <div className='h-[50px] row-span-3 grid grid-cols-3'>
-                    <h1>img{input.length}</h1>
-                    <h1>Send !</h1>
+                    <h1 className='ml-[15%]'>img{input.length}</h1>
+                    <h1 className='ml-auto h-[35px] mr-auto bg-[#1A4059] pl-[10px] pr-[10px] p-[5px] cursor-pointer rounded-lg'>Poster !</h1>
                     <div>
                         <h1 className='text-[red]'>Error</h1>
                     </div>
