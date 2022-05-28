@@ -22,7 +22,7 @@ const Post = () => {
 
     useEffect(() => {
         getPost();
-        setPost([{ id: 1, message: "test", timestamp: "15214545515" }]);
+        setPost([{ id: 1, message: "BBLBLLBLBLBLLB", timestamp: "15214545515" }]);
     }, []);
     return (
         <div className='w-[60%] ml-auto mr-0'>
@@ -32,7 +32,6 @@ const Post = () => {
                     const DateReturned = `${date.getDate()}/${(date.getMonth() + 1)}/${date.getFullYear()} à ${date.getHours()}:${date.getMinutes() < 10 ? ("0" + date.getMinutes()) : date.getMinutes()}`
                     return (
                         <div className='bg-[blue] mt-[20px] m-auto w-auto h-auto'>
-                            {/* contenue */}
                             <p className='text-white'>{onePost.message}</p>
                         </div>
                     )

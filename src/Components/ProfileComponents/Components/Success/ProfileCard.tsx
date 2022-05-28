@@ -52,13 +52,13 @@ const ProfileCard = () => {
           </div>
           <br />
           <div>
-            <p className="text-center text-black text-[100%] w-[100%]">voici ma bio</p>
+            <p className="text-center text-black text-[100%] w-[100%]">voici ma bio blblblb</p>
           </div>
         </div>
 
         {/* Bouton abonnement */}
         <div className="mt-[20px] flex justify-center">
-          <button className="bg-[#40CB34] text-black text-center text-xl w-[50%] h-[40px] rounded-lg">Abonnement</button>
+          <button className="bg-[#40CB34] text-black text-center text-xl w-[50%] h-[40px] rounded-lg">Suivre</button>
         </div>
         <br />
       </div>
