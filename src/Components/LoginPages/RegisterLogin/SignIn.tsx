@@ -12,7 +12,7 @@ const SignIn = () => {
 
         axios({
             method: "post",
-            url: `http://172.17.0.1:9999/api/auth/login`,
+            url: `http://192.168.1.38:9999/api/auth/login`,
             data: {
                 email: email,
                 password: password
@@ -23,6 +23,7 @@ const SignIn = () => {
             } else {
                 localStorage.setItem("Alpinezy", res.data.token)
                 localStorage.setItem("AlpinezyUsername", res.data.userinfo.username)
+                localStorage.setItem("AlpinezyID", res.data.userinfo.id)
                 window.location.href = "/thread";
             }
         }).catch(err => console.log(err));

@@ -17,7 +17,7 @@ const SignUp = () => {
 
             axios({
                 method: "post",
-                url: "http://172.17.0.1:9999/api/auth/register",
+                url: "http://192.168.1.38:9999/api/auth/register",
                 data: {
                     pseudo: pseudo,
                     email: email,
@@ -42,6 +42,7 @@ const SignUp = () => {
                         } else {
                             localStorage.setItem("Alpinezy", res.data.token)
                             localStorage.setItem("AlpinezyUsername", res.data.userinfo.username)
+                            localStorage.setItem("AlpinezyID", res.data.userinfo.id)
                             window.location.href = "/thread";
                         }
                     })
