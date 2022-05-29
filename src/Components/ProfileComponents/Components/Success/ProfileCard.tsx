@@ -7,7 +7,7 @@ const ProfileCard = () => {
   const userID = useParams().id;
 
   const imgLinkBadge = "https://bot.to/wp-content/uploads/2020/09/badges_5f6fc9e27fb25.png"
-  const ppLink = "https://i2.wp.com/velina.info/wp-content/uploads/2020/10/azura_lane_121539142_391019138741109_70959758741075226_n.jpg?resize=840%2C840&ssl=1"
+  const ppLink = "http://192.168.1.38:9999/image/paimon.jpg"
 
   const getUser = useCallback(() => {
     axios({
@@ -15,7 +15,7 @@ const ProfileCard = () => {
       url: `http://192.168.1.38:9999/api/user/get/${userID}`,
     }).then(res => {
       setUser(res.data.user[0]);
-      console.log(user);
+      console.log(res.data.user[0]);
     });
   }, [])
 
