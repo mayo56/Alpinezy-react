@@ -52,7 +52,7 @@ const ProfileCard = () => {
           </div>
           <br />
           <div>
-            <p className="text-center text-black text-[100%] w-[100%]">voici ma bio blblblb</p>
+            <p className="text-center text-black text-[100%] w-[100%]">{user.bio}</p>
           </div>
         </div>
 
