@@ -3,14 +3,14 @@ import React, { useState } from 'react';
 
 const ChangeProfile = () => {
     {/* Page for change user avatr with form */ }
-    const [image, setImage] = useState({});
+    const [image, setImage] = useState<string|Blob>();
 
     const SendImage = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        await axios.post("http://192.168.1.38:9999/api/user/setAvatar", image).then(res => {
+        await axios.post("http://192.168.1.38:9999/avatar", image).then(res => {
             console.log(res.data);
         });
-    }
+    };
     return (
         <div>
             <form encType='multipart/form-data' onSubmit={e => SendImage(e)}>
