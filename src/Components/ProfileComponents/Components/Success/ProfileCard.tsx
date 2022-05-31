@@ -17,11 +17,11 @@ const ProfileCard = () => {
       setUser(res.data.user[0]);
       console.log(res.data.user[0]);
     });
-  }, [])
+  }, [userID])
 
   useEffect(() => {
     getUser();
-  }, [])
+  }, [getUser])
 
   return (
     <div className="w-[40%] mr-[40px] ml-auto">

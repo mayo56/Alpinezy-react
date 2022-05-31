@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import ListeServeur from './LeftBar/ListeServeur';
 import Profile from './LeftBar/Profile';
 import Posts from './post/Posts';

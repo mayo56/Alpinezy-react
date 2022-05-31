@@ -6,6 +6,8 @@ import Profile from "./Pages/Profile";
 import Thread from "./Pages/Thread";
 import TOS from "./Pages/TOS";
 
+export const API_URL = "http://2.10.7.105:9999";
+
 function App() {
   return (
     <Routes>

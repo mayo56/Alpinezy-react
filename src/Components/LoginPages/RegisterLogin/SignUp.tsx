@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { API_URL } from '../../../App';
 
 const SignUp = () => {
     const [email, setEmail] = useState("");
@@ -8,7 +9,7 @@ const SignUp = () => {
     const [password, setPassword] = useState("");
     const [secPassword, setSecPassword] = useState("");
 
-    const OnClick = (e: any) => {
+    const OnClick = (e:React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         if (password !== secPassword) {
@@ -17,7 +18,7 @@ const SignUp = () => {
 
             axios({
                 method: "post",
-                url: "http://192.168.1.38:9999/api/auth/register",
+                url: `${API_URL}/api/auth/register`,
                 data: {
                     pseudo: pseudo,
                     email: email,

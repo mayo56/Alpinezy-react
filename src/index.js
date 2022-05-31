@@ -7,8 +7,7 @@ import { BrowserRouter } from 'react-router-dom';
 ///////////////////////////////////////////////--------------
 //  Socket.io  //
 import { io } from 'socket.io-client';
-
-const socket = io("ws://192.168.1.38:3001")
+const socket = io("ws://2.10.7.105:3001")
 socket.on("connect", () => {
   console.log(socket.id)
   socket.on('hello', (id, message) => {

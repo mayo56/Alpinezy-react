@@ -18,12 +18,12 @@ const Post = () => {
         }).then(res => {
             setPost(res.data.post);
         });
-    }, []);
+    }, [userID]);
 
     useEffect(() => {
         getPost();
         setPost([{ id: 1, message: "BBLBLLBLBLBLLB", timestamp: "15214545515" }]);
-    }, []);
+    }, [getPost]);
     return (
         <div className='w-[60%] ml-auto mr-0'>
             {
@@ -33,6 +33,7 @@ const Post = () => {
                     return (
                         <div className='bg-[blue] mt-[20px] m-auto w-auto h-auto'>
                             <p className='text-white'>{onePost.message}</p>
+                            <p className='text-white'>{DateReturned}</p>
                         </div>
                     )
                 })

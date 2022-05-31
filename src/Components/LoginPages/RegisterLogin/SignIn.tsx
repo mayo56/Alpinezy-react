@@ -1,18 +1,19 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { API_URL } from '../../../App';
 
 const SignIn = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
 
-    const OnClick = (e: any) => {
+    const OnClick = (e:React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         axios({
             method: "post",
-            url: `http://192.168.1.38:9999/api/auth/login`,
+            url: `${API_URL}/api/auth/login`,
             data: {
                 email: email,
                 password: password

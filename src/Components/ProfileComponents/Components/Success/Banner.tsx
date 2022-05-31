@@ -20,10 +20,10 @@ const Banner = () => {
           "https://leerob.io/static/images/turborepo-design-system-monorepo/banner.png"
         );
       });
-  }, []);
+  }, [userID]);
   useEffect(() => {
     banner();
-  }, []);
+  }, [banner]);
   return (
     <div className="z-0 ">
       <img src={banneURL} alt="UserBanner" className="w-full" />

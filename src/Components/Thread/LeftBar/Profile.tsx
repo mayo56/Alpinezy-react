@@ -6,7 +6,7 @@ const Profile = () => {
         <div>
             <div className='bg-[#1A4059] w-[400px] h-[150px] ml-[20px] mt-[20px] rounded-lg flex justify-between'>
                 <div className='mt-[10px] ml-[10px] w-[90px] h-[90px]'>
-                    <img src={require("./imgTemp/xiao.jpg")} className={"w-[90px] h-[90px] rounded-full"} alt='Photo de profile' />
+                    <img src={`${process.env.REACT_APP_API_URL}/api/user/avatar/default.png`} className={"w-[90px] h-[90px] rounded-full"} alt='Photo_de_profile' />
                 </div>
                 <div className='mr-[20px] w-[250px] mt-[20px] h-[80px] grid grid-cols-1 grid-rows-3'>
                     <div className='bg-[#416075] h-[25px] flex justify-between'>

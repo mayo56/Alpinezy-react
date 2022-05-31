@@ -71,8 +71,8 @@ const SendPost = () => {
                         />
                     </form>
                     <div className='mr-[15%] ml-auto'>
-                        <h1 id="errorPostSend" className='text-[red] text-center'></h1>
-                        <h1 id="successPostSend" className='text-[green] text-center'></h1>
+                        <h1 id="errorPostSend" className='text-[red] text-center'> </h1>
+                        <h1 id="successPostSend" className='text-[green] text-center'> </h1>
                     </div>
                 </div>
             </div>

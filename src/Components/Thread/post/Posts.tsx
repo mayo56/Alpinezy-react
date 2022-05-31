@@ -36,12 +36,9 @@ const Posts = () => {
         setUsers(AllUser)
     }, [])
 
-
     useEffect(() => {
         getPost()
-            .then(() => console.log("success"))
-            .catch(err => console.log("error \n" + err))
-    }, [])
+    }, [getPost])
 
     return (
         <div className='mt-[50px]'>

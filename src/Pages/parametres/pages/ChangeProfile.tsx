@@ -2,7 +2,6 @@ import axios from 'axios';
 import React, { useState } from 'react';
 
 const ChangeProfile = () => {
-    {/* Page for change user avatr with form */ }
     const [image, setImage] = useState<string|Blob>();
 
     const SendImage = async (event: React.FormEvent<HTMLFormElement>) => {
