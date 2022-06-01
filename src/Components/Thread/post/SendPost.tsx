@@ -1,8 +1,9 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { API_URL } from '../../../App';
 
-const SendPost = () => {
+const SendPost = (props:{user:{ id: number, username: string, discriminator: string, avatarurl: string, bio: string }}) => {
     const Pseudo = localStorage.getItem("AlpinezyUsername");
     const [input, setInput] = useState("")
     const Compteur = (<h1 className={input.length > 1024 ? "text-[red] flex" : "flex"}>{input.length}<h1 className='text-black'>/1024</h1></h1>)
@@ -41,7 +42,7 @@ const SendPost = () => {
                 {/* Profile */}
                 <NavLink to={`/profile/${localStorage.getItem("AlpinezyID")}`}>
                     <div className='grid grid-cols-2 w-[210px] ml-[20px] mt-[20px] h-[60px] row-span-1 rounded-lg p-[5px] hover:bg-[#407496] hover:cursor-pointer'>
-                        <img src={require("../LeftBar/imgTemp/xiao.jpg")} alt="pp" className='w-[50px] h-[50px] ml-[20px] rounded-full' />
+                        <img src={`${API_URL}/api/user/avatar/${props.user.avatarurl}`} alt="pp" className='w-[50px] h-[50px] ml-[20px] rounded-full' />
                         <div>
                             <h1>{Pseudo}</h1>
                             <h1>A B C</h1>

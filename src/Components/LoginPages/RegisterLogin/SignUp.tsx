@@ -32,7 +32,7 @@ const SignUp = () => {
                 } else {
                     axios({
                         method: "post",
-                        url: "http://192.168.1.38:9999/api/auth/login",
+                        url: `${API_URL}/api/auth/login`,
                         data: {
                             email: email,
                             password: password
@@ -53,7 +53,7 @@ const SignUp = () => {
 
     return (
         <>
-            <div className='flex justify-center mt-[150px]'>
+            <div className='flex justify-center'>
                 <form className='bg-[#9DC1BE] text-black font-bold p-[10px] rounded-lg shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)]' onSubmit={OnClick}>
                     <label className='text-[20px]'>S'inscrire</label>
                     <br />

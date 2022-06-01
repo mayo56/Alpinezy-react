@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { API_URL } from "../../../../App";
 
 const ProfileCard = () => {
   const [user, setUser] = useState({ id: 0, username: "", bio: "", banner: "", discriminator: "" });
@@ -12,7 +13,7 @@ const ProfileCard = () => {
   const getUser = useCallback(() => {
     axios({
       method: "get",
-      url: `http://192.168.1.38:9999/api/user/get/${userID}`,
+      url: `${API_URL}/api/user/get/${userID}`,
     }).then(res => {
       setUser(res.data.user[0]);
       console.log(res.data.user[0]);

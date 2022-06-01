@@ -17,7 +17,8 @@ const SignIn = () => {
             data: {
                 email: email,
                 password: password
-            }
+            },
+            
         }).then(res => {
             if (res.data.error) {
                 document.getElementById("error")!.innerHTML = res.data.error;
@@ -27,12 +28,12 @@ const SignIn = () => {
                 localStorage.setItem("AlpinezyID", res.data.userinfo.id)
                 window.location.href = "/thread";
             }
-        }).catch(err => console.log(err));
+        })
     }
 
     return (
         <>
-            <div className='flex justify-center mt-[150px]'>
+            <div className='flex justify-center'>
 
                 <form className='bg-transparent text-black font-bold p-[10px] rounded-lg dshadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)]' onSubmit={OnClick}>
                     <label className='text-[30px]'>Se connecter</label>

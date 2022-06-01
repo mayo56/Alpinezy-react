@@ -1,12 +1,13 @@
 import axios from 'axios';
 import React, { useState } from 'react';
+import { API_URL } from '../../../App';
 
 const ChangeProfile = () => {
     const [image, setImage] = useState<string|Blob>();
 
     const SendImage = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        await axios.post("http://192.168.1.38:9999/avatar", image).then(res => {
+        await axios.post(`${API_URL}/api/user/setAvatar`, image).then(res => {
             console.log(res.data);
         });
     };

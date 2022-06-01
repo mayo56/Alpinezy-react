@@ -8,7 +8,7 @@ import SignUp from './RegisterLogin/SignUp';
 const ControllerLogin = ( ) => {
     let LoginName = useParams()
     return (
-        <div>
+        <div className='h-full w-full pt-[10%]'>
             {
                 LoginName.id === "signin" ? <SignIn /> : LoginName.id === "signup" ? <SignUp /> : <LostInLogin />
             }

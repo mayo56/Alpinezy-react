@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { API_URL } from '../../../../App';
 
 interface PostForm {
     id: number;
@@ -14,7 +15,7 @@ const Post = () => {
     const getPost = useCallback(async () => {
         await axios({
             method: "get",
-            url: `http://192.168.1.38:9999/api/user/post/${userID}`,
+            url: `${API_URL}/api/user/post/${userID}`,
         }).then(res => {
             setPost(res.data.post);
         });

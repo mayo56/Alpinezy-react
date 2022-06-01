@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useCallback, useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { API_URL } from '../../../App';
 //document.getElementById("")!.append("<div>blblb</div>")
 interface PostForm {
     id: number;
@@ -16,7 +17,7 @@ const Posts = () => {
     const getPost = useCallback(async () => {
         const AllPost: PostForm[] = await axios({
             method: "get",
-            url: "http://192.168.1.38:9999/api/thread/requestAllPost",
+            url: `${API_URL}/api/thread/requestAllPost`,
             headers: {
                 "Authorization": localStorage.getItem("Alpinezy") as string
             }
@@ -27,7 +28,7 @@ const Posts = () => {
         for (let i = 0; i < AllPost.length; i++) {
             await axios({
                 method: "get",
-                url: `http://192.168.1.38:9999/api/user/get/${AllPost[i].user_id}`
+                url: `${API_URL}/api/user/get/${AllPost[i].user_id}`
             }).then(res => {
                 AllUser.push(res.data.user[0].username)
             })

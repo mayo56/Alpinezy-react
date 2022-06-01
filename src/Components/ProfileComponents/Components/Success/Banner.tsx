@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { API_URL } from "../../../../App";
 
 const Banner = () => {
   const userID = useParams().id;
@@ -9,7 +10,7 @@ const Banner = () => {
   const banner = useCallback(async () => {
     await axios({
       method: "get",
-      url: `http://192.168.1.38:9999/api/user/banner/${userID}`,
+      url: `${API_URL}/api/user/banner/${userID}`,
     })
       .then((res) => {
         setBannerURL(res.data.BannerURL);
