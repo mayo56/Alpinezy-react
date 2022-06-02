@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { API_URL } from '../../../App';
 
-const SendPost = (props:{user:{ id: number, username: string, discriminator: string, avatarurl: string, bio: string }}) => {
+const SendPost = (props: { user: { id: number, username: string, discriminator: string, avatarurl: string, bio: string } }) => {
     const Pseudo = localStorage.getItem("AlpinezyUsername");
     const [input, setInput] = useState("")
     const Compteur = (<h1 className={input.length > 1024 ? "text-[red] flex" : "flex"}>{input.length}<h1 className='text-black'>/1024</h1></h1>)
@@ -40,15 +40,18 @@ const SendPost = (props:{user:{ id: number, username: string, discriminator: str
         <div>
             <div className='m-auto mt-[20px] grid grid-rows-3 rounded-lg bg-[#325D79] w-[600px] h-[350px]'>
                 {/* Profile */}
-                <NavLink to={`/profile/${localStorage.getItem("AlpinezyID")}`}>
-                    <div className='grid grid-cols-2 w-[210px] ml-[20px] mt-[20px] h-[60px] row-span-1 rounded-lg p-[5px] hover:bg-[#407496] hover:cursor-pointer'>
+                <div>
+                    <NavLink to={`/profile/${localStorage.getItem("AlpinezyID")}`}
+                        className='grid grid-cols-2 w-[210px] ml-[20px] mt-[20px] h-[60px] row-span-1 rounded-lg p-[5px] hover:bg-[#407496] hover:cursor-pointer'>
+
                         <img src={`${API_URL}/api/user/avatar/${props.user.avatarurl}`} alt="pp" className='w-[50px] h-[50px] ml-[20px] rounded-full' />
                         <div>
                             <h1>{Pseudo}</h1>
                             <h1>A B C</h1>
                         </div>
-                    </div>
-                </NavLink>
+
+                    </NavLink>
+                </div>
 
                 {/* input de post */}
                 <div className='h-[200px] -translate-y-[10px] w-[600px] flex justify-center row-span-2'>
