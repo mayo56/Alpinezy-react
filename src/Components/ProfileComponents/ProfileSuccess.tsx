@@ -4,6 +4,7 @@ import Post from './Components/Success/Post';
 import ProfileCard from './Components/Success/ProfileCard';
 
 const ProfileSuccess = () => {
+    
     return (
         <div>
             <Banner />

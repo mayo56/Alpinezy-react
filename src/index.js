@@ -7,7 +7,7 @@ import { BrowserRouter } from 'react-router-dom';
 ///////////////////////////////////////////////--------------
 //  Socket.io  //
 import { io } from 'socket.io-client';
-const socket = io("ws://api.beta.alpinezy.com");
+const socket = io("https://websocket.alpinezy.com");
 socket.on("connect", () => {
   console.log(socket.id)
   socket.on('hello', (id, message) => {

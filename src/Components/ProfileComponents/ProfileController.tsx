@@ -6,8 +6,6 @@ import ProfileSuccess from './ProfileSuccess';
 const ProfileController = () => {
     const id = Number(useParams().id);
 
-    console.log(Number(id))
-
     return (
         <div>
             {

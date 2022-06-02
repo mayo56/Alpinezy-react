@@ -8,12 +8,11 @@ const SendPost = (props: { user: { id: number, username: string, discriminator: 
     const [input, setInput] = useState("")
     const Compteur = (<h1 className={input.length > 1024 ? "text-[red] flex" : "flex"}>{input.length}<h1 className='text-black'>/1024</h1></h1>)
 
-    console.log(input)
     const SendPost = (e: any) => {
         e.preventDefault()
         axios({
             method: "post",
-            url: "http://192.168.1.38:9999/api/thread/post",
+            url: "wss://192.168.1.38:9999/api/thread/post",
             headers: {
                 "Authorization": `${localStorage.getItem("Alpinezy")}`
             },
