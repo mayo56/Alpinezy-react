@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
-body{
+body {
     background-color: #171723;
+}
+
+.unsellectionnable {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
