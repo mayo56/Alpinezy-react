@@ -59,6 +59,18 @@ const Posts = () => {
     return (
         <div className='mt-[50px]'>
             {
+                post ? (
+                    <div>
+                        <svg className='h-[30px] w-[30px] m-auto animate-spin' stroke='black' viewBox="0 0 30 30">
+                            <circle cx={'15'} cy={'15'} r={'10'} stroke={'red'} fill='none' strokeWidth={"4"} />
+                            <path d='M5 15 a10 10 10 0 1 10 -10' stroke='pink' strokeWidth={5} />
+                        </svg>
+                    </div>
+                ) : (
+                    <><p>Lol</p></>
+                )
+            }
+            {
                 post.map((onePost, index) => {
                     const date = new Date(Number(onePost.timestamp))
                     /**
@@ -81,7 +93,7 @@ const Posts = () => {
 
                                         {/* Profil */}
                                         <NavLink to={`/profile/${onePost.user_id}`}
-                                            className='flex h-[50px] w-[201px] hover:bg-[#407496] hover:cursor-pointer rounded-lg'>
+                                            className='flex h-[50px] w-[201px] hover:bg-[#407496] hover:cursor-pointer rounded-lg hover:shadow-lg'>
 
                                             <img src={`${API_URL}/api/user/avatar/${users[index].avatarurl}`}
                                                 alt="Photo_de_profile"
@@ -108,20 +120,47 @@ const Posts = () => {
                                     {/* Bottom */}
                                     <div className='flex justify-between items-center'>
                                         <div className='flex'>
+
                                             {/* bouton commentaires */}
-                                            <div className='flex justify-center items-center w-[30px] h-[30px] bg-[#1A4059] rounded-lg hover:cursor-pointer'
-                                            onClick={() => {
-                                                if (comment === onePost.id) {
-                                                    setComment(-1)
-                                                } else {
-                                                    setComment(onePost.id)
+                                            <div
+                                                className={
+                                                    comment === (onePost.id) ? (
+                                                        //Si séléctionné
+                                                        'flex justify-center items-center w-[30px] h-[30px] bg-[#101f2a] rounded-lg hover:cursor-pointer ' +
+                                                        'hover:shadow-lg transition delay-[50ms] hover:scale-[1.15] '
+                                                    ) : (
+                                                        //Si non séléctionné
+                                                        'flex justify-center items-center w-[30px] h-[30px] bg-[#1A4059] rounded-lg hover:cursor-pointer ' +
+                                                        'hover:shadow-lg transition delay-[50ms] hover:scale-[1.15] '
+                                                    )
                                                 }
-                                            }}>
-                                                <p>C</p>
+                                                onClick={() => {
+                                                    if (comment === onePost.id) {
+                                                        setComment(-1)
+                                                    } else {
+                                                        setComment(onePost.id)
+                                                    }
+                                                }}>
+                                                <svg width={'30px'} height={'30px'} className={""}>
+                                                    <ellipse cx={'15'} cy={'14'} rx={'9'} ry={'8'} stroke={"white"} strokeWidth={'2'} fill={"transparent"} />
+                                                    <path d={'M6.7 15.5 L5 22 L12 21.1'} strokeWidth={"2"} stroke={'white'}
+                                                        fill={comment === onePost.id ? '#101f2a' : '#1A4059'} />
+
+                                                </svg>
                                             </div>
                                             {/* bouton Like */}
-                                            <div className='ml-[10px] flex justify-center items-center w-[30px] h-[30px] bg-[#1A4059] rounded-lg hover:cursor-pointer'>
-                                                <p>L</p>
+                                            <div className={
+                                                'ml-[10px] flex justify-center items-center w-[30px] h-[30px] bg-[#1A4059] rounded-lg hover:cursor-pointer' +
+                                                'hover:shadow-lg transition delay-[50ms] hover:scale-[1.15] hover:cursor-pointer'
+                                            }>
+                                                <svg className='w-[30px] h-[30px]' viewBox='0 0 30 30'>
+                                                    <path d={'M5 10 ' +
+                                                        'a10 25 0 0 1 10 0 a10 25 0 0 1 10 0 M25 12 ' +
+                                                        'C25 6, 28 20, 15 25 M15 25 C15 25, 2 20, 5 10'}
+                                                        stroke='white'
+                                                        fill='none'
+                                                        strokeWidth={2} />
+                                                </svg>
                                             </div>
                                         </div>
                                         <div className='flex'>
@@ -141,19 +180,42 @@ const Posts = () => {
                                     </div>
                                 </div>
                                 {
+                                    //Menu déroulant
                                     menu === onePost.id ?
                                         (
                                             <div className='flex'>
                                                 <div className='z-10 absolute w-[10px] ml-[-10px] mt-[150px] h-[20px] bg-sky-500 rotate-45'></div>
                                                 <div className='z-10 border-[2px] border-sky-400 ml-[-10px] mt-[70px] bg-black p-[5px] rounded-[5px] absolute text-white'>
-                                                    <NavLink to={`/thread/${onePost.id}`}>
-                                                        <p className={"hover:bg-gray-800 p-[5px] rounded-[5px] bg-transparent"}>Voir le post</p>
+
+                                                    {/* Voir le post */}
+                                                    <NavLink to={`/thread/${onePost.id}`} >
+                                                        <div className={"hover:bg-gray-800 p-[5px] rounded-[5px] bg-transparent flex items-center"}>
+                                                            <svg className='h-[30px] w-[30px]' viewBox='0 0 30 30'>
+                                                                <ellipse cx={15} cy={15} rx={10} ry={6} fill={'none'} strokeWidth={2} stroke={'rgb(14 165 233/500)'} />
+                                                                <circle cx={15} cy={15} r={5} fill={'rgb(14 165 233/500)'} />
+                                                            </svg>
+                                                            <p className='ml-[5px]'>Voir le post</p>
+                                                        </div>
                                                     </NavLink>
+
+                                                    {/* Signaler le post */}
                                                     <NavLink to={`/thread/${onePost.id}`}>
-                                                        <p className={"hover:bg-gray-800 p-[5px] rounded-[5px] bg-transparent"}>Signaler</p>
+                                                        <div className={"hover:bg-gray-800 p-[5px] rounded-[5px] bg-transparent flex items-center"}>
+                                                            <svg className='h-[30px] w-[30px]' viewBox='0 0 30 30'>
+                                                                
+                                                            </svg>
+                                                            <p className='ml-[5px]'>Signaler</p>
+                                                        </div>
                                                     </NavLink>
+
+                                                    {/* Partager le post */}
                                                     <NavLink to={`/thread/${onePost.id}`}>
-                                                        <p className={"hover:bg-gray-800 p-[5px] rounded-[5px] bg-transparent"}>Partager</p>
+                                                    <div className={"hover:bg-gray-800 p-[5px] rounded-[5px] bg-transparent flex items-center"}>
+                                                            <svg className='h-[30px] w-[30px]' viewBox='0 0 30 30'>
+
+                                                            </svg>
+                                                            <p className='ml-[5px]'>Partager</p>
+                                                        </div>
                                                     </NavLink>
                                                 </div>
                                             </div>
@@ -187,7 +249,7 @@ const Posts = () => {
                                                 {/* Zone de texte */}
                                                 <textarea
                                                     className={
-                                                        'mt-[10px] w-[90%] h-[90px] rounded-lg p-[5px] resize-none outline-none '
+                                                        'mt-[10px] w-[90%] h-[90px] rounded-lg p-[5px] resize-none outline-none bg-[#1A4059] text-white'
                                                     }
                                                     rows={3}
                                                     placeholder={"Écrire un commentaire"}
@@ -199,13 +261,13 @@ const Posts = () => {
                                                 <p
                                                     className={
                                                         'mr-0 ml-auto w-[120px] text-center rounded-lg mt-[5px] bg-[#1A4059] p-[5px] ' +
-                                                        'hover:cursor-not-allowed unsellectionnable'
+                                                        'hover:cursor-not-allowed unsellectionnable text-white'
                                                     }
                                                 >Commenter !</p>
                                             </div>
                                         </div>
 
-                                    ):<></>
+                                    ) : <></>
                             }
 
                         </div >
