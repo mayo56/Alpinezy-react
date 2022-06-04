@@ -31,7 +31,7 @@ const Posts = () => {
                 "Authorization": localStorage.getItem("Alpinezy") as string
             }
         }).then(res => {
-            return (res.data.post)
+            return (res.data.post);
         })
         let AllUser: UserForm[] = []
         for (let i = 0; i < AllPost.length; i++) {
@@ -56,18 +56,20 @@ const Posts = () => {
 
     //Partie commentaires
     const [comment, setComment] = useState(-1);
+
     return (
         <div className='mt-[50px]'>
             {
-                post ? (
-                    <div>
-                        <svg className='h-[30px] w-[30px] m-auto animate-spin' stroke='black' viewBox="0 0 30 30">
-                            <circle cx={'15'} cy={'15'} r={'10'} stroke={'red'} fill='none' strokeWidth={"4"} />
-                            <path d='M5 15 a10 10 10 0 1 10 -10' stroke='pink' strokeWidth={5} />
+                post.length < 1 ? ( 
+                    <div className='flex justify-center items-center'>
+                        <svg className='h-[30px] w-[30px] animate-spin' stroke='black' viewBox="0 0 30 30">
+                            <circle cx={'15'} cy={'15'} r={'10'} stroke={'#1A4059'} fill='none' strokeWidth={"4"} />
+                            <path d='M5 15 a10 10 10 0 1 10 -10' stroke='#325D79' strokeWidth={5} />
                         </svg>
+                        <h1 className='ml-[10px] text-white'>Chargement...</h1>
                     </div>
                 ) : (
-                    <><p>Lol</p></>
+                    <></>
                 )
             }
             {
@@ -114,7 +116,7 @@ const Posts = () => {
 
                                     {/* content */}
                                     <div className='h-auto p-[10px]'>
-                                        <p className='max-w-[560px] truncate h-[24px] break-words'>{decodeURI(onePost.message)}</p>
+                                        <p className='max-w-[560px] truncate text-[20px] break-words'>{decodeURI(onePost.message)}</p>
                                     </div>
 
                                     {/* Bottom */}
@@ -191,8 +193,12 @@ const Posts = () => {
                                                     <NavLink to={`/thread/${onePost.id}`} >
                                                         <div className={"hover:bg-gray-800 p-[5px] rounded-[5px] bg-transparent flex items-center"}>
                                                             <svg className='h-[30px] w-[30px]' viewBox='0 0 30 30'>
+                                                                {/* Contour */}
                                                                 <ellipse cx={15} cy={15} rx={10} ry={6} fill={'none'} strokeWidth={2} stroke={'rgb(14 165 233/500)'} />
+                                                                {/* Gros cercle */}
                                                                 <circle cx={15} cy={15} r={5} fill={'rgb(14 165 233/500)'} />
+                                                                {/* Petit cercle */}
+                                                                <circle cx={15} cy={15} r={2} />
                                                             </svg>
                                                             <p className='ml-[5px]'>Voir le post</p>
                                                         </div>
@@ -202,7 +208,14 @@ const Posts = () => {
                                                     <NavLink to={`/thread/${onePost.id}`}>
                                                         <div className={"hover:bg-gray-800 p-[5px] rounded-[5px] bg-transparent flex items-center"}>
                                                             <svg className='h-[30px] w-[30px]' viewBox='0 0 30 30'>
-                                                                
+                                                                <path d={
+                                                                    'M5 27 L5 11 C5 11, 5 7, 10 7 ' + //Gauche
+                                                                    'L20 7 C20 7, 25 7, 25 11 ' +  //Haut
+                                                                    'L25 18 C25 18, 25 22, 20 22' +  //Droite
+                                                                    'L10 22 L5 26.5 ' + //bas
+                                                                    'M15 9.5 L15 15.5' //Point d'exlamation (barre)
+                                                                } stroke={'#FF0000'} strokeWidth={2} fill={'none'}/>
+                                                                <circle cx={15} cy={18} r={1.2} fill={'red'} />
                                                             </svg>
                                                             <p className='ml-[5px]'>Signaler</p>
                                                         </div>
@@ -212,7 +225,18 @@ const Posts = () => {
                                                     <NavLink to={`/thread/${onePost.id}`}>
                                                     <div className={"hover:bg-gray-800 p-[5px] rounded-[5px] bg-transparent flex items-center"}>
                                                             <svg className='h-[30px] w-[30px]' viewBox='0 0 30 30'>
+                                                                {/* Trais */}
+                                                                <path d={
+                                                                    "M10 13 L20 7 " +
+                                                                    "M10 16 L25 20 " + 
+                                                                    "M9 18 L15 25"
+                                                                } stroke={"#AAAAFF"} strokeWidth={2} fill={'none'}/>
 
+                                                                {/* Cercles */}
+                                                                <circle cx={7} cy={15} r={4} fill='#777777' strokeWidth={2} stroke='#AAAAAA' /> {/* 1er cercle */}
+                                                                <circle cx={20} cy={7} r={3} fill='#AAAAAA' /> {/* 2eme cercle */}
+                                                                <circle cx={15} cy={25} r={3} fill='#AAAAAA' /> {/* 4eme cercle */}
+                                                                <circle cx={25} cy={20} r={3} fill='#AAAAAA' strokeWidth={1.5} stroke='#AAAAAA' /> {/* 3eme cercle */}
                                                             </svg>
                                                             <p className='ml-[5px]'>Partager</p>
                                                         </div>

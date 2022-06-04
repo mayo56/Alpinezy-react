@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { API_URL } from "../../../../App";
 
 const ProfileCard = () => {
-  const [user, setUser] = useState({ id: 0, username: "", bio: "", banner: "", discriminator: "" });
+  const [user, setUser] = useState({ id: 0, username: "", bio: "", banner: "", discriminator: "", avatarurl:"" });
   const userID = useParams().id;
 
   const imgLinkBadge = "https://bot.to/wp-content/uploads/2020/09/badges_5f6fc9e27fb25.png"
@@ -40,7 +40,7 @@ const ProfileCard = () => {
 
           {/* Photo de profile */}
           <div className="grid grid-rows-1 mt-[20px]">
-            <img src={ppLink} alt="PP" className="w-[80%] m-auto rounded-full" />
+            <img src={`${API_URL}/api/user/avatar/${user.avatarurl}`} alt="PP" className="w-[80%] m-auto rounded-full" />
           </div>
 
         </div>
