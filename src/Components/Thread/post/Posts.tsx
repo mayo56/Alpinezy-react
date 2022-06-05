@@ -58,9 +58,9 @@ const Posts = () => {
     const [comment, setComment] = useState(-1);
 
     return (
-        <div className='mt-[50px]'>
+        <div className='mt-[50px] m-auto'>
             {
-                post.length < 1 ? ( 
+                post.length < 1 ? (
                     <div className='flex justify-center items-center'>
                         <svg className='h-[30px] w-[30px] animate-spin' stroke='black' viewBox="0 0 30 30">
                             <circle cx={'15'} cy={'15'} r={'10'} stroke={'#1A4059'} fill='none' strokeWidth={"4"} />
@@ -116,7 +116,7 @@ const Posts = () => {
 
                                     {/* content */}
                                     <div className='h-auto p-[10px]'>
-                                        <p className='max-w-[560px] truncate text-[20px] break-words'>{decodeURI(onePost.message)}</p>
+                                        <p className='max-w-[560px] truncate text-[24px] break-words'>{decodeURI(onePost.message)}</p>
                                     </div>
 
                                     {/* Bottom */}
@@ -165,6 +165,8 @@ const Posts = () => {
                                                 </svg>
                                             </div>
                                         </div>
+
+                                        {/* Bouton trois petits points */}
                                         <div className='flex'>
                                             <div onClick={
                                                 () => {
@@ -176,7 +178,13 @@ const Posts = () => {
                                                     "bg-[#1A4059] w-[30px] h-[30px] text-center rounded-md hover:cursor-pointer"
                                                 }
                                             >
-                                                <p className='unsellectionnable'>...</p>
+                                                <svg className='w-[30px] h-[30px]' viewBox='0 0 120 100'>
+                                                    {/* Trois petits points */}
+                                                    <circle cx={30} cy={50} r={10} fill={'white'} /> {/* 1er point */}
+                                                    <circle cx={60} cy={50} r={10} fill={'white'} /> {/* 2ème point */}
+                                                    <circle cx={90} cy={50} r={10} fill={'white'} /> {/* 3ème point */}
+
+                                                </svg>
                                             </div>
                                         </div>
                                     </div>
@@ -186,8 +194,8 @@ const Posts = () => {
                                     menu === onePost.id ?
                                         (
                                             <div className='flex'>
-                                                <div className='z-10 absolute w-[10px] ml-[-10px] mt-[150px] h-[20px] bg-sky-500 rotate-45'></div>
-                                                <div className='z-10 border-[2px] border-sky-400 ml-[-10px] mt-[70px] bg-black p-[5px] rounded-[5px] absolute text-white'>
+                                                <div className='z-10 absolute w-[10px] ml-[-10px] mt-[165px] h-[20px] bg-sky-500 rotate-45'></div>
+                                                <div className='z-10 ml-[-10px] mt-[70px] bg-[#1A4059] border-[#325D79] border-[2px] p-[5px] rounded-[5px] absolute text-white'>
 
                                                     {/* Voir le post */}
                                                     <NavLink to={`/thread/${onePost.id}`} >
@@ -214,7 +222,7 @@ const Posts = () => {
                                                                     'L25 18 C25 18, 25 22, 20 22' +  //Droite
                                                                     'L10 22 L5 26.5 ' + //bas
                                                                     'M15 9.5 L15 15.5' //Point d'exlamation (barre)
-                                                                } stroke={'#FF0000'} strokeWidth={2} fill={'none'}/>
+                                                                } stroke={'#FF0000'} strokeWidth={2} fill={'none'} />
                                                                 <circle cx={15} cy={18} r={1.2} fill={'red'} />
                                                             </svg>
                                                             <p className='ml-[5px]'>Signaler</p>
@@ -223,14 +231,14 @@ const Posts = () => {
 
                                                     {/* Partager le post */}
                                                     <NavLink to={`/thread/${onePost.id}`}>
-                                                    <div className={"hover:bg-gray-800 p-[5px] rounded-[5px] bg-transparent flex items-center"}>
+                                                        <div className={"hover:bg-gray-800 p-[5px] rounded-[5px] bg-transparent flex items-center"}>
                                                             <svg className='h-[30px] w-[30px]' viewBox='0 0 30 30'>
                                                                 {/* Trais */}
                                                                 <path d={
                                                                     "M10 13 L20 7 " +
-                                                                    "M10 16 L25 20 " + 
+                                                                    "M10 16 L25 20 " +
                                                                     "M9 18 L15 25"
-                                                                } stroke={"#AAAAFF"} strokeWidth={2} fill={'none'}/>
+                                                                } stroke={"#AAAAFF"} strokeWidth={2} fill={'none'} />
 
                                                                 {/* Cercles */}
                                                                 <circle cx={7} cy={15} r={4} fill='#777777' strokeWidth={2} stroke='#AAAAAA' /> {/* 1er cercle */}
@@ -268,7 +276,7 @@ const Posts = () => {
                                             {/* Box commentaires */}
                                             <div className='p-[10px] w-[80%] rounded-lg h-auto bg-[#325D79] mt-[20px]'>
                                                 {/* Titre */}
-                                                <h1 className='font-bold text-[18px] text-white underline'>Commentaire</h1>
+                                                <h1 className='font-bold text-[20px] text-white'>Commentaire</h1>
 
                                                 {/* Zone de texte */}
                                                 <textarea

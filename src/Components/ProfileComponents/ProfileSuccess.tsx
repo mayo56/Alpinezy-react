@@ -8,7 +8,7 @@ const ProfileSuccess = () => {
     return (
         <div>
             <Banner />
-            <div className='bg-[#171723] grid grid-cols-2 z-10 -translate-y-[100%]'>
+            <div className='bg-[#171723] grid grid-cols-2'>
                 <Post />
                 <ProfileCard />
             </div>

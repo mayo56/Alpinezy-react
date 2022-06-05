@@ -8,7 +8,6 @@ const ProfileCard = () => {
   const userID = useParams().id;
 
   const imgLinkBadge = "https://bot.to/wp-content/uploads/2020/09/badges_5f6fc9e27fb25.png"
-  const ppLink = "http://192.168.1.38:9999/image/paimon.jpg"
 
   const getUser = useCallback(() => {
     axios({
@@ -19,23 +18,21 @@ const ProfileCard = () => {
       console.log(res.data.user[0]);
     });
   }, [userID])
-
+  
   useEffect(() => {
     getUser();
   }, [getUser])
 
   return (
-    <div className="w-[40%] mr-[40px] ml-auto">
-      <div className="z-20 bg-[#325D79] -translate-y-[30%] w-[100%] h-auto rounded-lg">
+    <div className="absolute w-[20%] ml-[75%] top-[300px]">
+      <div className="z-20 bg-[#325D79] w-[100%] h-auto rounded-lg">
 
         {/* Photo de profile et badge */}
         <div className="grid grid-cols-2 grid-rows-1 m-auto w-[90%]">
 
           {/* Badges */}
-          <div className="grid grid-rows-3 mt-[20px]">
+          <div className="grid grid-rows-1 mt-[20px]">
             <img src={imgLinkBadge} alt="Badge1" className="w-[40%] m-auto rounded-full" />
-            <img src={imgLinkBadge} alt="Badge2" className="w-[40%] m-auto rounded-full" />
-            <img src={imgLinkBadge} alt="Badge3" className="w-[40%] m-auto rounded-full" />
           </div>
 
           {/* Photo de profile */}
@@ -66,7 +63,7 @@ const ProfileCard = () => {
 
       <div>
         {/* bouton signaler */}
-        <div className="-translate-y-[100px] flex justify-end">
+        <div className="flex justify-end mt-[20px]">
           <button className="bg-[#cb3434] text-black text-center text-xl w-[50%] h-[40px] rounded-lg">Signaler</button>
         </div>
       </div>

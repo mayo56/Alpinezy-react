@@ -35,8 +35,8 @@ const ThreadController = () => {
 
 
             {/* Post */}
-            <div id="post" className=''>
-                <SendPost user={userInfo}/>
+            <div id="post" className='m-auto'>
+                <SendPost user={userInfo} />
                 <Posts />
             </div>
 

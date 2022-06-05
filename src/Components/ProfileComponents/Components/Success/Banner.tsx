@@ -27,7 +27,7 @@ const Banner = () => {
   }, [banner]);
   return (
     <div className="z-0 ">
-      <img src={banneURL} alt="UserBanner" className="w-full" />
+      <img src={banneURL} alt="UserBanner" className="w-full object-cover h-[400px]" />
     </div>
   );
 };

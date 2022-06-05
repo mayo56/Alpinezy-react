@@ -44,7 +44,7 @@ const SendPost = (props: { user: { id: number, username: string, discriminator: 
                         className='grid grid-cols-2 w-[210px] ml-[20px] mt-[20px] h-[60px] row-span-1 rounded-lg p-[5px] hover:bg-[#407496] hover:shadow-lg hover:cursor-pointer'>
 
                         <img src={`${API_URL}/api/user/avatar/${props.user.avatarurl}`} alt="pp" className='w-[50px] h-[50px] ml-[20px] rounded-full' />
-                        <div>
+                        <div className='text-white'>
                             <h1>{Pseudo}</h1>
                             <h1>A B C</h1>
                         </div>
