@@ -45,8 +45,18 @@ const SendPost = (props: { user: { id: number, username: string, discriminator: 
 
                         <img src={`${API_URL}/api/user/avatar/${props.user.avatarurl}`} alt="pp" className='w-[50px] h-[50px] ml-[20px] rounded-full' />
                         <div className='text-white'>
-                            <h1>{Pseudo}</h1>
-                            <h1>A B C</h1>
+                            <h1 className='font-bold text-[18px]'>{Pseudo}</h1>
+                            <div className='flex'>
+                                <svg className='w-[18px] h-[18px]' viewBox='0 0 100 100'>
+                                    <path d='M0 0 L100 100 M100 0 L0 100' stroke='red' strokeWidth={10} />
+                                </svg>
+                                <svg className='ml-[5px] w-[18px] h-[18px]' viewBox='0 0 100 100'>
+                                    <path d='M0 0 L100 100 M100 0 L0 100' stroke='red' strokeWidth={10} />
+                                </svg>
+                                <svg className='ml-[5px] w-[18px] h-[18px]' viewBox='0 0 100 100'>
+                                    <path d='M0 0 L100 100 M100 0 L0 100' stroke='red' strokeWidth={10} />
+                                </svg>
+                            </div>
                         </div>
 
                     </NavLink>
