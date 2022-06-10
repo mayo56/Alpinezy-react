@@ -62,8 +62,7 @@ const Profile = (props: { user: { id: number, username: string, discriminator: s
                                 onMouseOver={() => setBadge({ badge: 1, name: "Alpha tester" })}
                                 onMouseOut={() => setBadge({ badge: 0, name: '' })}>
                                 {/* #5865F2 */}
-                                <polygon points='0 0, 100 0, 60 50' fill='#5865F2' />
-                                <polygon points='0 100, 100 100, 40 50' fill='#5865F2' />
+                                <path d='M0 0 L100 0 L60 50 M0 100 L100 100 L40 50' fill='#5865F2' />
                             </svg>
                             {
                                 badge.badge === 1 ?
