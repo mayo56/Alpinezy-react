@@ -9,11 +9,16 @@ import Logs from './RightBar/Logs';
 import News from './RightBar/News';
 
 const ThreadController = () => {
-    const [user, setUser] = useState({ id: 0, username: "", discriminator: "", avatarurl: "", bio: "" });
+    const [user, setUser] = useState(
+        { id: 0, username: "", discriminator: "", avatarurl: "", bio: "", following:"", follower:"", privatemessage:"", serveur:"", badges:"", badgesshow:"" }
+    );
     const getUser = useCallback(async () => {
         await axios({
             method: 'get',
-            url: `${API_URL}/api/user/get/${localStorage.getItem('AlpinezyID')}`,
+            url: `${API_URL}/api/user/getWithAuth/${localStorage.getItem('AlpinezyID')}`,
+            headers: {
+                'Authorization': `${localStorage.getItem('Alpinezy')}`
+            }
         }).then(res => {
             setUser(res.data.user[0]);
         })
@@ -22,6 +27,7 @@ const ThreadController = () => {
         getUser();
     }, [getUser]);
     const userInfo = useDeferredValue(user);
+    console.log(user)
     return (
         <div className='grid grid-cols-3'>
             {/* Left bar */}
