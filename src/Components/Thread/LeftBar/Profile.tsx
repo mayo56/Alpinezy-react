@@ -1,16 +1,39 @@
-import React, { useState } from 'react';
+import axios from 'axios';
+import React, { useCallback, useEffect, useState } from 'react';
 import { API_URL } from '../../../App';
 
-const Profile = (props: { user: { id: number, username: string, discriminator: string, avatarurl: string, bio: string } }) => {
+interface badges {
+    id: number;
+    nom: string;
+    description: string;
+    svg: string;
+    fill: string;
+    stroke: string
+}
+
+const Profile = (props: { user: { id: number, username: string, discriminator: string, avatarurl: string, bio: string, following: string, follower: string, privatemessage: string, serveur: string, badges: string, badgesshow: string } }) => {
     const [badge, setBadge] = useState({ badge: 0, name: '' });
+    const [badgesShow, setBadgeShow] = useState<badges[]>([]);
 
+    const getBadges = useCallback(async () => {
+        const listeBadges = props.user.badgesshow.split(',');
+        let listBadgesShow: badges[] = [];
+        for (let i = 0; i < listeBadges.length; i++) {
+            await axios({
+                method: 'get',
+                url: `${API_URL}/api/AIG/badge/${listeBadges[i]}`,
+            }).then(res => {
+                listBadgesShow.push(res.data);
+            }).catch(err => {
+                console.log(err);
+            })
+        }
+        setBadgeShow(listBadgesShow.flat(1));
+    }, [props.user.badgesshow]);
+    useEffect(() => {
+        getBadges();
+    }, [badgesShow, getBadges]);
 
-    const posDescBadge = [
-        undefined,
-        `absolute p-[3px] w-auto bg-[#101f2a] top-[120px] z-20 border-[2px] border-[#101f2a] rounded-r-md rounded-b-md`,
-        "absolute p-[3px] w-auto bg-[#101f2a] top-[120px] z-20 border-[2px] border-[#101f2a] rounded-r-md rounded-b-md",
-        "absolute p-[3px] w-auto bg-[#101f2a] top-[120px] z-20 border-[2px] border-[#101f2a] rounded-r-md rounded-b-md"
-    ];
     return (
         <div>
             {/* Profile */}
@@ -59,17 +82,17 @@ const Profile = (props: { user: { id: number, username: string, discriminator: s
                         {/* Bage 1 */}
                         <div>
                             <svg className='w-[20px] h-[20px]' viewBox='0 0 100 100'
-                                onMouseOver={() => setBadge({ badge: 1, name: "Alpha tester" })}
+                                onMouseOver={() => badgesShow[0] ? setBadge({ badge: 1, name: badgesShow[0]?.nom }) : ""}
                                 onMouseOut={() => setBadge({ badge: 0, name: '' })}>
                                 {/* #5865F2 */}
-                                <path d='M0 0 L100 0 L60 50 M0 100 L100 100 L40 50' fill='#5865F2' />
+                                <path d={badgesShow[0]?.svg} fill={badgesShow[0]?.fill} stroke={badgesShow[0]?.stroke} />
                             </svg>
                             {
                                 badge.badge === 1 ?
                                     (
                                         <div
-                                            className={posDescBadge[badge.badge]}>
-                                            <h1 className='text-white'>{badge.name}</h1>
+                                            className={"absolute p-[3px] w-auto bg-[#101f2a] top-[120px] z-20 border-[2px] border-[#101f2a] rounded-r-md rounded-b-md"}>
+                                            <h1 className='text-white'>{badgesShow[0]?.nom}</h1>
                                         </div>
                                     ) : (
                                         <></>
@@ -80,15 +103,16 @@ const Profile = (props: { user: { id: number, username: string, discriminator: s
                         {/* Badge 2 */}
                         <div>
                             <svg className='w-[20px] h-[20px]' viewBox='0 0 100 100'
-                                onMouseMove={() => setBadge({ badge: 2, name: "none" })}
+                                onMouseMove={() => badgesShow[1] ? setBadge({ badge: 2, name: badgesShow[1]?.nom }) : ""}
                                 onMouseOut={() => setBadge({ badge: 0, name: '' })}>
-                                <path d='M0 0 L100 100 M100 0 L0 100' stroke='red' strokeWidth={10} />
+                                <path d={badgesShow[1]?.svg}
+                                    stroke={badgesShow[1]?.stroke} fill={badgesShow[1]?.fill} strokeWidth={10} />
                             </svg>
                             {
                                 badge.badge === 2 ?
                                     (
                                         <div
-                                            className={posDescBadge[badge.badge]}>
+                                            className={"absolute p-[3px] w-auto bg-[#101f2a] top-[120px] z-20 border-[2px] border-[#101f2a] rounded-r-md rounded-b-md"}>
                                             <h1 className='text-white'>{badge.name}</h1>
                                         </div>
                                     ) : (
@@ -100,15 +124,16 @@ const Profile = (props: { user: { id: number, username: string, discriminator: s
                         {/* Badge 3 */}
                         <div>
                             <svg className='w-[20px] h-[20px]' viewBox='0 0 100 100'
-                                onMouseMove={() => setBadge({ badge: 3, name: "none" })}
+                                onMouseMove={() => badgesShow[2] ? setBadge({ badge: 3, name: badgesShow[2]?.nom }) : ""}
                                 onMouseOut={() => setBadge({ badge: 0, name: '' })}>
-                                <path d='M0 0 L100 100 M100 0 L0 100' stroke='red' strokeWidth={10} />
+                                <path d={badgesShow[2]?.svg}
+                                    stroke={badgesShow[2]?.stroke} fill={badgesShow[2]?.fill} strokeWidth={10} />
                             </svg>
                             {
                                 badge.badge === 3 ?
                                     (
                                         <div
-                                            className={posDescBadge[badge.badge]}>
+                                            className={"absolute p-[3px] w-auto bg-[#101f2a] top-[120px] z-20 border-[2px] border-[#101f2a] rounded-r-md rounded-b-md"}>
                                             <h1 className='text-white'>{badge.name}</h1>
                                         </div>
                                     ) : (
@@ -136,7 +161,7 @@ const Profile = (props: { user: { id: number, username: string, discriminator: s
                         c20.469,11.818,46.641,4.805,58.458-15.664l10.482-18.157C371.604,255.453,364.59,229.281,344.123,217.463z M190,245.634
                         c-30.725,0-55.634-24.909-55.634-55.634c0-30.725,24.909-55.634,55.634-55.634s55.634,24.909,55.634,55.634
                         C245.634,220.725,220.725,245.634,190,245.634z' fill='white' />
-                        
+
                     </svg>
                 </div>
                 {/* Profile */}
