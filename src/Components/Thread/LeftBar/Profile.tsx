@@ -20,14 +20,14 @@ const Profile = (props: { user: USER, badges:badges[]}) => {
             <div className='bg-[#1A4059] w-[400px] h-[150px] ml-[20px] mt-[20px] rounded-lg flex justify-between'>
                 {/* Avatar */}
                 <div className='mt-[10px] ml-[10px] w-[90px] h-[90px]'>
-                    <img src={`${API_URL}/api/user/avatar/${user?.avatarurl}`}
+                    <img src={user ? `${API_URL}/api/user/avatar/${user?.avatarurl}` : ""}
                         className={"w-[90px] h-[90px] rounded-full border-2 shadow-xl"} alt='Photo_de_profile' />
                 </div>
                 {/* Username, badge et barre de progression */}
                 <div className='mr-[20px] w-[250px] mt-[20px] h-[80px] grid grid-cols-1 grid-rows-3'>
                     <div className='bg-[#416075] h-[25px] flex justify-between'>
                         {/* username */}
-                        <h1 className='ml-[5px] font-bold text-white'>{user?.username}</h1>
+                        <h1 className='ml-[5px] font-bold text-white'>{user? user.username : ""}</h1>
                         {/* Bouton modification username */}
                         <div className='shadow-lg'>
                             <svg className='h-[20px] w-[20px] mt-[2.5px] mr-[2.5px]' viewBox='0 0 100 100'>
@@ -62,17 +62,18 @@ const Profile = (props: { user: USER, badges:badges[]}) => {
                         {/* Bage 1 */}
                         <div>
                             <svg className='w-[20px] h-[20px]' viewBox='0 0 100 100'
-                                onMouseOver={() => badgesShow?.[0] ? setBadge({ badge: 1, name: badgesShow[0]?.nom }) : ""}
+                                onMouseOver={() => badgesShow?.[0] ? setBadge({ badge: 1, name: badgesShow ? badgesShow[0].nom : "" }) : ""}
                                 onMouseOut={() => setBadge({ badge: 0, name: '' })}>
                                 {/* #5865F2 */}
-                                <path d={badgesShow?.[0].svg} fill={badgesShow?.[0].fill} stroke={badgesShow?.[0].stroke} />
+                                <path d={badgesShow ? badgesShow[0]?.svg : ""}
+                                fill={badgesShow ?badgesShow[0]?.fill : ""} stroke={badgesShow ? badgesShow[0]?.stroke : ""} />
                             </svg>
                             {
                                 badge.badge === 1 ?
                                     (
                                         <div
                                             className={"absolute p-[3px] w-auto bg-[#101f2a] top-[120px] z-20 border-[2px] border-[#101f2a] rounded-r-md rounded-b-md"}>
-                                            <h1 className='text-white'>{badgesShow?.[0].nom}</h1>
+                                            <h1 className='text-white'>{badge.name}</h1>
                                         </div>
                                     ) : (
                                         <></>
@@ -86,7 +87,7 @@ const Profile = (props: { user: USER, badges:badges[]}) => {
                                 onMouseMove={() => badgesShow?.[1] ? setBadge({ badge: 2, name: badgesShow[1]?.nom }) : ""}
                                 onMouseOut={() => setBadge({ badge: 0, name: '' })}>
                                 <path d={badgesShow?.[1]?.svg}
-                                    stroke={badgesShow?.[1]?.stroke} fill={badgesShow?.[1]?.fill} strokeWidth={10} />
+                                    stroke={badgesShow? badgesShow[1]?.stroke : ""} fill={badgesShow? badgesShow[1]?.fill : ""} strokeWidth={10} />
                             </svg>
                             {
                                 badge.badge === 2 ?
@@ -106,8 +107,9 @@ const Profile = (props: { user: USER, badges:badges[]}) => {
                             <svg className='w-[20px] h-[20px]' viewBox='0 0 100 100'
                                 onMouseMove={() => badgesShow?.[2] ? setBadge({ badge: 3, name: badgesShow[2]?.nom }) : ""}
                                 onMouseOut={() => setBadge({ badge: 0, name: '' })}>
-                                <path d={badgesShow?.[2]?.svg}
-                                    stroke={badgesShow?.[2]?.stroke} fill={badgesShow?.[2]?.fill} strokeWidth={10} />
+                                <path d={badgesShow? badgesShow[2]?.svg : ""}
+                                    stroke={badgesShow? badgesShow[2]?.stroke : ""}
+                                    fill={badgesShow? badgesShow[2]?.fill : ""} strokeWidth={10} />
                             </svg>
                             {
                                 badge.badge === 3 ?

@@ -2,13 +2,17 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { API_URL } from '../../../App';
-import { USER } from '../ThreadController';
+import { USER, badges } from '../ThreadController';
 
-const SendPost = (props: { user: USER | null}) => {
+const SendPost = (props: { user: USER | null, badges: badges[] | null}) => {
+    //input pour post
     const [input, setInput] = useState("")
     const Compteur = (<h1 className={input.length > 1024 ? "text-[red] flex" : "flex"}>{input.length}<h1 className='text-black'>/1024</h1></h1>)
 
-    const [user, setUser] = useState<USER | null>(null)
+    //user
+    const [user, setUser] = useState<USER | null>(props.user)
+    const [badges, setBadges] = useState<badges[] | null>(props.badges)
+
     const SendPost = (e: any) => {
         e.preventDefault()
         axios({
@@ -47,7 +51,7 @@ const SendPost = (props: { user: USER | null}) => {
                     <NavLink to={`/profile/${localStorage.getItem("AlpinezyID")}`}
                         className='grid grid-cols-2 w-[210px] ml-[20px] mt-[20px] h-[60px] row-span-1 rounded-lg p-[5px] hover:bg-[#407496] hover:shadow-lg hover:cursor-pointer'>
 
-                        <img src={`${API_URL}/api/user/avatar/${user?.avatarurl}`} alt="pp" className='w-[50px] h-[50px] ml-[20px] rounded-full' />
+                        <img src={user ? `${API_URL}/api/user/avatar/${user?.avatarurl}` : ""} alt="pp" className='w-[50px] h-[50px] ml-[20px] rounded-full' />
                         <div className='text-white'>
                             <h1 className='font-bold text-[18px]'>{user?.username}</h1>
                             <div className='flex'>
