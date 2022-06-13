@@ -42,7 +42,8 @@ const SendPost = (props: { user: USER | null, badges: badges[] | null}) => {
     };
     useEffect(() => {
         setUser(props.user)
-    },[props.user])
+        setBadges(props.badges);
+    },[props.user, props.badges]);
     return (
         <div>
             <div className='m-auto mt-[20px] grid grid-rows-3 rounded-lg bg-[#325D79] w-[600px] h-[350px]'>
@@ -56,13 +57,19 @@ const SendPost = (props: { user: USER | null, badges: badges[] | null}) => {
                             <h1 className='font-bold text-[18px]'>{user?.username}</h1>
                             <div className='flex'>
                                 <svg className='w-[18px] h-[18px]' viewBox='0 0 100 100'>
-                                    <path d={user?.badges[0]} stroke='red' strokeWidth={10} />
+                                    <path d={badges ? badges[0]?.svg : ""}
+                                    fill={badges ? badges[0]?.fill : ""}
+                                    stroke={badges ? badges[0]?.stroke : ""} strokeWidth={10} />
                                 </svg>
                                 <svg className='ml-[5px] w-[18px] h-[18px]' viewBox='0 0 100 100'>
-                                    <path d='M0 0 L100 100 M100 0 L0 100' stroke='red' strokeWidth={10} />
+                                <path d={badges ? badges[1]?.svg : ""}
+                                    fill={badges ? badges[1]?.fill : ""}
+                                    stroke={badges ? badges[1]?.stroke : ""} strokeWidth={10} />
                                 </svg>
                                 <svg className='ml-[5px] w-[18px] h-[18px]' viewBox='0 0 100 100'>
-                                    <path d='M0 0 L100 100 M100 0 L0 100' stroke='red' strokeWidth={10} />
+                                <path d={badges ? badges[2]?.svg : ""}
+                                    fill={badges ? badges[2]?.fill : ""}
+                                    stroke={badges ? badges[2]?.stroke : ""} strokeWidth={10} />
                                 </svg>
                             </div>
                         </div>

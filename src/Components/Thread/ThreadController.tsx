@@ -25,6 +25,7 @@ export interface USER {
 const ThreadController = () => {
     const [user, setUser] = useState<USER>();
     const [badges, setBadges] = useState<badges[] | null>(null);
+    const [lol, setLol] = useState(0)
     const getUser = async () => {
         await axios({
             method: 'get',
@@ -36,7 +37,6 @@ const ThreadController = () => {
             setUser(res.data.user[0]);
         })
     };
-
     const getBadge = async () => {
         const listeBadges = user!.badgesshow.split(',');
         let listBadgesShow: badges[] = [];
@@ -53,9 +53,14 @@ const ThreadController = () => {
         setBadges(listBadgesShow.flat(1));
     }
     useEffect(() => {
-        getUser()
+        getUser();
+        console.warn("User load...");
     }, []);
-    user ? (getBadge()) : (console.warn("Loading user..."))
+    if (lol==0 && user) {
+        getBadge();
+        setLol(1);
+        console.warn("Badges load..");
+    };
     return (
         <div className='grid grid-cols-3'>
             {/* Left bar */}
