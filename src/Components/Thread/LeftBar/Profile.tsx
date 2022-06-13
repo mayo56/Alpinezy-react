@@ -1,53 +1,33 @@
 import axios from 'axios';
 import React, { useCallback, useEffect, useState } from 'react';
 import { API_URL } from '../../../App';
+import { USER } from "../ThreadController"
+import { badges } from "../ThreadController";
 
-interface badges {
-    id: number;
-    nom: string;
-    description: string;
-    svg: string;
-    fill: string;
-    stroke: string
-}
 
-const Profile = (props: { user: { id: number, username: string, discriminator: string, avatarurl: string, bio: string, following: string, follower: string, privatemessage: string, serveur: string, badges: string, badgesshow: string } }) => {
+const Profile = (props: { user: USER, badges:badges[]}) => {
     const [badge, setBadge] = useState({ badge: 0, name: '' });
-    const [badgesShow, setBadgeShow] = useState<badges[]>([]);
+    const [badgesShow, setBadgeShow] = useState<badges[] | null>(null);
+    const [user, setUser] = useState<USER | null>(null);
 
-    const getBadges = useCallback(async () => {
-        const listeBadges = props.user.badgesshow.split(',');
-        let listBadgesShow: badges[] = [];
-        for (let i = 0; i < listeBadges.length; i++) {
-            await axios({
-                method: 'get',
-                url: `${API_URL}/api/AIG/badge/${listeBadges[i]}`,
-            }).then(res => {
-                listBadgesShow.push(res.data);
-            }).catch(err => {
-                console.log(err);
-            })
-        }
-        setBadgeShow(listBadgesShow.flat(1));
-    }, [props.user.badgesshow]);
     useEffect(() => {
-        getBadges();
-    }, [badgesShow, getBadges]);
-
+        setUser(props.user);
+        setBadgeShow(props.badges)      
+    }, [props.user, props.badges]);
     return (
         <div>
             {/* Profile */}
             <div className='bg-[#1A4059] w-[400px] h-[150px] ml-[20px] mt-[20px] rounded-lg flex justify-between'>
                 {/* Avatar */}
                 <div className='mt-[10px] ml-[10px] w-[90px] h-[90px]'>
-                    <img src={`${API_URL}/api/user/avatar/${props.user.avatarurl}`}
+                    <img src={`${API_URL}/api/user/avatar/${user?.avatarurl}`}
                         className={"w-[90px] h-[90px] rounded-full border-2 shadow-xl"} alt='Photo_de_profile' />
                 </div>
                 {/* Username, badge et barre de progression */}
                 <div className='mr-[20px] w-[250px] mt-[20px] h-[80px] grid grid-cols-1 grid-rows-3'>
                     <div className='bg-[#416075] h-[25px] flex justify-between'>
                         {/* username */}
-                        <h1 className='ml-[5px] font-bold text-white'>{props.user.username}</h1>
+                        <h1 className='ml-[5px] font-bold text-white'>{user?.username}</h1>
                         {/* Bouton modification username */}
                         <div className='shadow-lg'>
                             <svg className='h-[20px] w-[20px] mt-[2.5px] mr-[2.5px]' viewBox='0 0 100 100'>
@@ -82,17 +62,17 @@ const Profile = (props: { user: { id: number, username: string, discriminator: s
                         {/* Bage 1 */}
                         <div>
                             <svg className='w-[20px] h-[20px]' viewBox='0 0 100 100'
-                                onMouseOver={() => badgesShow[0] ? setBadge({ badge: 1, name: badgesShow[0]?.nom }) : ""}
+                                onMouseOver={() => badgesShow?.[0] ? setBadge({ badge: 1, name: badgesShow[0]?.nom }) : ""}
                                 onMouseOut={() => setBadge({ badge: 0, name: '' })}>
                                 {/* #5865F2 */}
-                                <path d={badgesShow[0]?.svg} fill={badgesShow[0]?.fill} stroke={badgesShow[0]?.stroke} />
+                                <path d={badgesShow?.[0].svg} fill={badgesShow?.[0].fill} stroke={badgesShow?.[0].stroke} />
                             </svg>
                             {
                                 badge.badge === 1 ?
                                     (
                                         <div
                                             className={"absolute p-[3px] w-auto bg-[#101f2a] top-[120px] z-20 border-[2px] border-[#101f2a] rounded-r-md rounded-b-md"}>
-                                            <h1 className='text-white'>{badgesShow[0]?.nom}</h1>
+                                            <h1 className='text-white'>{badgesShow?.[0].nom}</h1>
                                         </div>
                                     ) : (
                                         <></>
@@ -103,10 +83,10 @@ const Profile = (props: { user: { id: number, username: string, discriminator: s
                         {/* Badge 2 */}
                         <div>
                             <svg className='w-[20px] h-[20px]' viewBox='0 0 100 100'
-                                onMouseMove={() => badgesShow[1] ? setBadge({ badge: 2, name: badgesShow[1]?.nom }) : ""}
+                                onMouseMove={() => badgesShow?.[1] ? setBadge({ badge: 2, name: badgesShow[1]?.nom }) : ""}
                                 onMouseOut={() => setBadge({ badge: 0, name: '' })}>
-                                <path d={badgesShow[1]?.svg}
-                                    stroke={badgesShow[1]?.stroke} fill={badgesShow[1]?.fill} strokeWidth={10} />
+                                <path d={badgesShow?.[1]?.svg}
+                                    stroke={badgesShow?.[1]?.stroke} fill={badgesShow?.[1]?.fill} strokeWidth={10} />
                             </svg>
                             {
                                 badge.badge === 2 ?
@@ -124,10 +104,10 @@ const Profile = (props: { user: { id: number, username: string, discriminator: s
                         {/* Badge 3 */}
                         <div>
                             <svg className='w-[20px] h-[20px]' viewBox='0 0 100 100'
-                                onMouseMove={() => badgesShow[2] ? setBadge({ badge: 3, name: badgesShow[2]?.nom }) : ""}
+                                onMouseMove={() => badgesShow?.[2] ? setBadge({ badge: 3, name: badgesShow[2]?.nom }) : ""}
                                 onMouseOut={() => setBadge({ badge: 0, name: '' })}>
-                                <path d={badgesShow[2]?.svg}
-                                    stroke={badgesShow[2]?.stroke} fill={badgesShow[2]?.fill} strokeWidth={10} />
+                                <path d={badgesShow?.[2]?.svg}
+                                    stroke={badgesShow?.[2]?.stroke} fill={badgesShow?.[2]?.fill} strokeWidth={10} />
                             </svg>
                             {
                                 badge.badge === 3 ?

@@ -1,13 +1,14 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { API_URL } from '../../../App';
+import { USER } from '../ThreadController';
 
-const SendPost = (props: { user: { id: number, username: string, discriminator: string, avatarurl: string, bio: string } }) => {
-    const Pseudo = localStorage.getItem("AlpinezyUsername");
+const SendPost = (props: { user: USER | null}) => {
     const [input, setInput] = useState("")
     const Compteur = (<h1 className={input.length > 1024 ? "text-[red] flex" : "flex"}>{input.length}<h1 className='text-black'>/1024</h1></h1>)
 
+    const [user, setUser] = useState<USER | null>(null)
     const SendPost = (e: any) => {
         e.preventDefault()
         axios({
@@ -35,6 +36,9 @@ const SendPost = (props: { user: { id: number, username: string, discriminator: 
                 }, 5000);
             });
     };
+    useEffect(() => {
+        setUser(props.user)
+    },[props.user])
     return (
         <div>
             <div className='m-auto mt-[20px] grid grid-rows-3 rounded-lg bg-[#325D79] w-[600px] h-[350px]'>
@@ -43,12 +47,12 @@ const SendPost = (props: { user: { id: number, username: string, discriminator: 
                     <NavLink to={`/profile/${localStorage.getItem("AlpinezyID")}`}
                         className='grid grid-cols-2 w-[210px] ml-[20px] mt-[20px] h-[60px] row-span-1 rounded-lg p-[5px] hover:bg-[#407496] hover:shadow-lg hover:cursor-pointer'>
 
-                        <img src={`${API_URL}/api/user/avatar/${props.user.avatarurl}`} alt="pp" className='w-[50px] h-[50px] ml-[20px] rounded-full' />
+                        <img src={`${API_URL}/api/user/avatar/${user?.avatarurl}`} alt="pp" className='w-[50px] h-[50px] ml-[20px] rounded-full' />
                         <div className='text-white'>
-                            <h1 className='font-bold text-[18px]'>{Pseudo}</h1>
+                            <h1 className='font-bold text-[18px]'>{user?.username}</h1>
                             <div className='flex'>
                                 <svg className='w-[18px] h-[18px]' viewBox='0 0 100 100'>
-                                    <path d='M0 0 L100 100 M100 0 L0 100' stroke='red' strokeWidth={10} />
+                                    <path d={user?.badges[0]} stroke='red' strokeWidth={10} />
                                 </svg>
                                 <svg className='ml-[5px] w-[18px] h-[18px]' viewBox='0 0 100 100'>
                                     <path d='M0 0 L100 100 M100 0 L0 100' stroke='red' strokeWidth={10} />
