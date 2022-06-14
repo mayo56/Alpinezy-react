@@ -5,7 +5,7 @@ import { USER } from "../ThreadController"
 import { badges } from "../ThreadController";
 
 
-const Profile = (props: { user: USER, badges:badges[]}) => {
+const Profile = (props: { user: USER | null, badges:badges[] | null}) => {
     const [badge, setBadge] = useState({ badge: 0, name: '' });
     const [badgesShow, setBadgeShow] = useState<badges[] | null>(null);
     const [user, setUser] = useState<USER | null>(null);
@@ -17,7 +17,7 @@ const Profile = (props: { user: USER, badges:badges[]}) => {
     return (
         <div>
             {/* Profile */}
-            <div className='bg-[#1A4059] w-[400px] h-[150px] ml-[20px] mt-[20px] rounded-lg flex justify-between'>
+            <div className='bg-[#1A4059] w-[400px] h-[150px] rounded-lg flex justify-between'>
                 {/* Avatar */}
                 <div className='mt-[10px] ml-[10px] w-[90px] h-[90px]'>
                     <img src={user ? `${API_URL}/api/user/avatar/${user?.avatarurl}` : ""}

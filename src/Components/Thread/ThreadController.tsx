@@ -23,7 +23,7 @@ export interface USER {
 }
 
 const ThreadController = () => {
-    const [user, setUser] = useState<USER>();
+    const [user, setUser] = useState<USER | null>(null);
     const [badges, setBadges] = useState<badges[] | null>(null);
     const [lol, setLol] = useState(0)
     const getUser = async () => {
@@ -56,17 +56,19 @@ const ThreadController = () => {
         getUser();
         console.warn("User load...");
     }, []);
-    if (lol==0 && user) {
+    if (lol == 0 && user) {
         getBadge();
         setLol(1);
         console.warn("Badges load..");
     };
     return (
-        <div className='grid grid-cols-3'>
+        <div className={
+            'grid grid-cols-[minmax(440px,_0px)_minmax(700px,_1fr)_minmax(440px,_0px)]'
+        }>
             {/* Left bar */}
-            <div>
+            <div className='flex justify-center items-center h-[100vh]'>
                 <div id="left" className='fixed'>
-                    <Profile badges={badges!} user={user!} />
+                    <Profile badges={badges} user={user} />
                     <ListeServeur />
                     <br />
                 </div>
@@ -74,14 +76,16 @@ const ThreadController = () => {
 
 
             {/* Post */}
-            <div id="post" className='m-auto'>
-                <SendPost badges={badges} user={user!} />
-                <Posts />
+            <div id="post" className='flex justify-center'>
+                <div>
+                    <SendPost badges={badges} user={user} />
+                    <Posts />
+                </div>
             </div>
 
             {/* right bar */}
-            <div className='flex justify-end'>
-                <div id='right' className='fixed mr-[20px] mt-[20px]'>
+            <div className='flex h-[100vh] justify-center items-center'>
+                <div id='right' className='fixed'>
                     <News />
                     <Logs />
                 </div>
