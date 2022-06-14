@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useCallback, useDeferredValue, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { API_URL } from '../../App';
 import ListeServeur from './LeftBar/ListeServeur';
 import Profile from './LeftBar/Profile';
@@ -56,7 +56,7 @@ const ThreadController = () => {
         getUser();
         console.warn("User load...");
     }, []);
-    if (lol == 0 && user) {
+    if (lol === 0 && user) {
         getBadge();
         setLol(1);
         console.warn("Badges load..");
@@ -66,7 +66,7 @@ const ThreadController = () => {
             'grid grid-cols-[minmax(440px,_0px)_minmax(700px,_1fr)_minmax(440px,_0px)]'
         }>
             {/* Left bar */}
-            <div className='flex justify-center items-center h-[100vh]'>
+            <div className='flex justify-center h-[100vh] mt-[20px]'>
                 <div id="left" className='fixed'>
                     <Profile badges={badges} user={user} />
                     <ListeServeur />
@@ -84,7 +84,7 @@ const ThreadController = () => {
             </div>
 
             {/* right bar */}
-            <div className='flex h-[100vh] justify-center items-center'>
+            <div className='flex h-[100vh] justify-center items-start mt-[20px]'>
                 <div id='right' className='fixed'>
                     <News />
                     <Logs />

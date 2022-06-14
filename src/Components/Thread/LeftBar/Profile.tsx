@@ -1,5 +1,4 @@
-import axios from 'axios';
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { API_URL } from '../../../App';
 import { USER } from "../ThreadController"
 import { badges } from "../ThreadController";
@@ -19,9 +18,11 @@ const Profile = (props: { user: USER | null, badges:badges[] | null}) => {
             {/* Profile */}
             <div className='bg-[#1A4059] w-[400px] h-[150px] rounded-lg flex justify-between'>
                 {/* Avatar */}
-                <div className='mt-[10px] ml-[10px] w-[90px] h-[90px]'>
+                <div className={user ?
+                    'mt-[10px] ml-[10px] w-[90px] h-[90px]' : 'mt-[10px] ml-[10px] w-[90px] h-[90px] animate-pulse'
+                    }>
                     <img src={user ? `${API_URL}/api/user/avatar/${user?.avatarurl}` : ""}
-                        className={"w-[90px] h-[90px] rounded-full border-2 shadow-xl"} alt='Photo_de_profile' />
+                        className={"w-[90px] h-[90px] bg-gray-600 rounded-full border-2 shadow-xl"} alt='Photo_de_profile' />
                 </div>
                 {/* Username, badge et barre de progression */}
                 <div className='mr-[20px] w-[250px] mt-[20px] h-[80px] grid grid-cols-1 grid-rows-3'>
@@ -72,7 +73,7 @@ const Profile = (props: { user: USER | null, badges:badges[] | null}) => {
                                 badge.badge === 1 ?
                                     (
                                         <div
-                                            className={"absolute p-[3px] w-auto bg-[#101f2a] top-[120px] z-20 border-[2px] border-[#101f2a] rounded-r-md rounded-b-md"}>
+                                            className={"absolute p-[3px] w-auto bg-[#101f2a] top-[100px] z-20 border-[2px] border-[#101f2a] rounded-r-md rounded-b-md"}>
                                             <h1 className='text-white'>{badge.name}</h1>
                                         </div>
                                     ) : (
@@ -93,7 +94,7 @@ const Profile = (props: { user: USER | null, badges:badges[] | null}) => {
                                 badge.badge === 2 ?
                                     (
                                         <div
-                                            className={"absolute p-[3px] w-auto bg-[#101f2a] top-[120px] z-20 border-[2px] border-[#101f2a] rounded-r-md rounded-b-md"}>
+                                            className={"absolute p-[3px] w-auto bg-[#101f2a] top-[100px] z-20 border-[2px] border-[#101f2a] rounded-r-md rounded-b-md"}>
                                             <h1 className='text-white'>{badge.name}</h1>
                                         </div>
                                     ) : (
@@ -115,7 +116,7 @@ const Profile = (props: { user: USER | null, badges:badges[] | null}) => {
                                 badge.badge === 3 ?
                                     (
                                         <div
-                                            className={"absolute p-[3px] w-auto bg-[#101f2a] top-[120px] z-20 border-[2px] border-[#101f2a] rounded-r-md rounded-b-md"}>
+                                            className={"absolute p-[3px] w-auto bg-[#101f2a] top-[100px] z-20 border-[2px] border-[#101f2a] rounded-r-md rounded-b-md"}>
                                             <h1 className='text-white'>{badge.name}</h1>
                                         </div>
                                     ) : (
