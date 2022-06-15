@@ -13,7 +13,6 @@ export interface badges {
     description: string;
     svg: string; fill: string; stroke: string
 }
-
 export interface USER {
     id: number; username: string;
     discriminator: string; avatarurl: string;
@@ -21,11 +20,16 @@ export interface USER {
     privatemessage: string; serveur: string;
     badges: string; badgesshow: string;
 }
+export type Liste = {
+    id: number; name: string; avatarurl:string;
+    memberCount:number;
+}
 
 const ThreadController = () => {
     const [user, setUser] = useState<USER | null>(null);
     const [badges, setBadges] = useState<badges[] | null>(null);
-    const [lol, setLol] = useState(0)
+    const [compteur, setCompteur] = useState(0);
+
     const getUser = async () => {
         await axios({
             method: 'get',
@@ -34,6 +38,10 @@ const ThreadController = () => {
                 'Authorization': `${localStorage.getItem('Alpinezy')}`
             }
         }).then(res => {
+            if (res.data.error) {
+                localStorage.clear();
+                window.location.href = "/login/signin";
+            };
             setUser(res.data.user[0]);
         })
     };
@@ -56,9 +64,9 @@ const ThreadController = () => {
         getUser();
         console.warn("User load...");
     }, []);
-    if (lol === 0 && user) {
+    if (compteur === 0 && user) {
         getBadge();
-        setLol(1);
+        setCompteur(1);
         console.warn("Badges load..");
     };
     return (
@@ -69,7 +77,7 @@ const ThreadController = () => {
             <div className='flex justify-center h-[100vh] mt-[20px]'>
                 <div id="left" className='fixed'>
                     <Profile badges={badges} user={user} />
-                    <ListeServeur />
+                    <ListeServeur user={user}/>
                     <br />
                 </div>
             </div>

@@ -18,7 +18,9 @@ const SignIn = () => {
                 email: email,
                 password: password
             },
-            
+            headers:{
+                "access-control-allow-origin": "*"
+            }
         }).then(res => {
             if (res.data.error) {
                 document.getElementById("error")!.innerHTML = res.data.error;

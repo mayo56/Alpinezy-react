@@ -17,7 +17,7 @@ const SendPost = (props: { user: USER | null, badges: badges[] | null}) => {
         e.preventDefault()
         axios({
             method: "post",
-            url: "wss://192.168.1.38:9999/api/thread/post",
+            url: `${API_URL}/api/thread/post`,
             headers: {
                 "Authorization": `${localStorage.getItem("Alpinezy")}`
             },

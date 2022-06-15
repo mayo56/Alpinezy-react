@@ -9,7 +9,7 @@ const SignUp = () => {
     const [password, setPassword] = useState("");
     const [secPassword, setSecPassword] = useState("");
 
-    const OnClick = (e:React.FormEvent<HTMLFormElement>) => {
+    const OnClick = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         if (password !== secPassword) {
@@ -23,6 +23,9 @@ const SignUp = () => {
                     pseudo: pseudo,
                     email: email,
                     password: password
+                },
+                headers:{
+                    "access-control-allow-origin": "*"
                 }
             }).then(res => {
                 console.log(res.data)
@@ -36,6 +39,9 @@ const SignUp = () => {
                         data: {
                             email: email,
                             password: password
+                        },
+                        headers:{
+                            "access-control-allow-origin": "*"
                         }
                     }).then(res => {
                         if (res.data.error) {
