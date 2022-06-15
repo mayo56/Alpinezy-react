@@ -4,14 +4,14 @@ import { USER } from "../ThreadController"
 import { badges } from "../ThreadController";
 
 
-const Profile = (props: { user: USER | null, badges:badges[] | null}) => {
+const Profile = (props: { user: USER | null, badges: badges[] | null }) => {
     const [badge, setBadge] = useState({ badge: 0, name: '' });
     const [badgesShow, setBadgeShow] = useState<badges[] | null>(null);
     const [user, setUser] = useState<USER | null>(null);
 
     useEffect(() => {
         setUser(props.user);
-        setBadgeShow(props.badges)      
+        setBadgeShow(props.badges)
     }, [props.user, props.badges]);
     return (
         <div>
@@ -20,7 +20,7 @@ const Profile = (props: { user: USER | null, badges:badges[] | null}) => {
                 {/* Avatar */}
                 <div className={user ?
                     'mt-[10px] ml-[10px] w-[90px] h-[90px]' : 'mt-[10px] ml-[10px] w-[90px] h-[90px] animate-pulse'
-                    }>
+                }>
                     <img src={user ? `${API_URL}/api/user/avatar/${user?.avatarurl}` : ""}
                         className={"w-[90px] h-[90px] bg-gray-600 rounded-full border-2 shadow-xl"} alt='Photo_de_profile' />
                 </div>
@@ -28,7 +28,7 @@ const Profile = (props: { user: USER | null, badges:badges[] | null}) => {
                 <div className='mr-[20px] w-[250px] mt-[20px] h-[80px] grid grid-cols-1 grid-rows-3'>
                     <div className='bg-[#416075] h-[25px] flex justify-between'>
                         {/* username */}
-                        <h1 className='ml-[5px] font-bold text-white'>{user? user.username : ""}</h1>
+                        <h1 className='ml-[5px] font-bold text-white'>{user ? user.username : ""}</h1>
                         {/* Bouton modification username */}
                         <div className='shadow-lg'>
                             <svg className='h-[20px] w-[20px] mt-[2.5px] mr-[2.5px]' viewBox='0 0 100 100'>
@@ -67,7 +67,7 @@ const Profile = (props: { user: USER | null, badges:badges[] | null}) => {
                                 onMouseOut={() => setBadge({ badge: 0, name: '' })}>
                                 {/* #5865F2 */}
                                 <path d={badgesShow ? badgesShow[0]?.svg : ""}
-                                fill={badgesShow ?badgesShow[0]?.fill : ""} stroke={badgesShow ? badgesShow[0]?.stroke : ""} />
+                                    fill={badgesShow ? badgesShow[0]?.fill : ""} stroke={badgesShow ? badgesShow[0]?.stroke : ""} />
                             </svg>
                             {
                                 badge.badge === 1 ?
@@ -88,7 +88,7 @@ const Profile = (props: { user: USER | null, badges:badges[] | null}) => {
                                 onMouseMove={() => badgesShow?.[1] ? setBadge({ badge: 2, name: badgesShow[1]?.nom }) : ""}
                                 onMouseOut={() => setBadge({ badge: 0, name: '' })}>
                                 <path d={badgesShow?.[1]?.svg}
-                                    stroke={badgesShow? badgesShow[1]?.stroke : ""} fill={badgesShow? badgesShow[1]?.fill : ""} strokeWidth={10} />
+                                    stroke={badgesShow ? badgesShow[1]?.stroke : ""} fill={badgesShow ? badgesShow[1]?.fill : ""} strokeWidth={10} />
                             </svg>
                             {
                                 badge.badge === 2 ?
@@ -108,9 +108,9 @@ const Profile = (props: { user: USER | null, badges:badges[] | null}) => {
                             <svg className='w-[20px] h-[20px]' viewBox='0 0 100 100'
                                 onMouseMove={() => badgesShow?.[2] ? setBadge({ badge: 3, name: badgesShow[2]?.nom }) : ""}
                                 onMouseOut={() => setBadge({ badge: 0, name: '' })}>
-                                <path d={badgesShow? badgesShow[2]?.svg : ""}
-                                    stroke={badgesShow? badgesShow[2]?.stroke : ""}
-                                    fill={badgesShow? badgesShow[2]?.fill : ""} strokeWidth={10} />
+                                <path d={badgesShow ? badgesShow[2]?.svg : ""}
+                                    stroke={badgesShow ? badgesShow[2]?.stroke : ""}
+                                    fill={badgesShow ? badgesShow[2]?.fill : ""} strokeWidth={10} />
                             </svg>
                             {
                                 badge.badge === 3 ?
@@ -149,9 +149,15 @@ const Profile = (props: { user: USER | null, badges:badges[] | null}) => {
                 </div>
                 {/* Profile */}
                 <div className='hover:bg-[#101f2a] rounded-lg p-[5px] hover:cursor-pointer'>
-                    <svg className='w-[20px] h-[20px] rounded-[2px]' viewBox='0 0 100 100'>
-                        <circle cx={50} cy={30} r={30} fill={'white'} />
-                        <path d='M0 100 C0 100, 50 30, 100 100' fill='white' />
+                    <svg className='w-[20px]' viewBox='0 0 24 24'>
+                        <path d='M11.8372 11.1735C14.26 11.1735 16.2236 9.2099
+                        16.2236 6.78718C16.2236 4.36445 14.26 2.3999 11.8372 2.3999C9.41452 2.3999
+                        7.44998 4.36445 7.44998 6.78718C7.4418 9.20172 9.3918 11.1654 11.8063
+                        11.1735C11.8172 11.1735 11.8272 11.1735 11.8372 11.1735Z' stroke='white' fill='white' />
+                        <path d='M11.8445 21.6618C8.15273 21.6618 5 21.0873
+                        5 18.7865C5 16.4858 8.13273 14.3618 11.8445 14.3618C15.5364
+                        14.3618 18.6891 16.4652 18.6891 18.766C18.6891 21.0658 15.5564
+                        21.6618 11.8445 21.6618Z' stroke='white' fill='white' />
                     </svg>
                 </div>
                 {/* Arbre de compétence */}

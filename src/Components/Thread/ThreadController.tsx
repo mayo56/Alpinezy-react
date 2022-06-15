@@ -22,7 +22,7 @@ export interface USER {
 }
 export type Liste = {
     id: number; name: string; avatarurl:string;
-    memberCount:number;
+    members:string;
 }
 
 const ThreadController = () => {

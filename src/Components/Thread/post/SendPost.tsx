@@ -90,7 +90,7 @@ const SendPost = (props: { user: USER | null, badges: badges[] | null}) => {
 
                 {/* Boutons post! et image */}
                 <div className='h-[50px] row-span-3 grid grid-cols-3'>
-                    <h1 className='ml-[15%] bg-[#1A4059] h-[35px] w-[35px] rounded-lg'>img{input.length}</h1>
+                    <h1 className='ml-[15%] bg-[#1A4059] h-[35px] w-[35px] rounded-lg'>img</h1>
                     <form onSubmit={e => SendPost(e)} className='text-center'>
                         <input
                             type={"submit"}
