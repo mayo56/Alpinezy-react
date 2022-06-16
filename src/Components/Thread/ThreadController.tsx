@@ -21,8 +21,8 @@ export interface USER {
     badges: string; badgesshow: string;
 }
 export type Liste = {
-    id: number; name: string; avatarurl:string;
-    members:string;
+    id: number; name: string; avatarurl: string;
+    members: string;
 }
 
 const ThreadController = () => {
@@ -70,34 +70,47 @@ const ThreadController = () => {
         console.warn("Badges load..");
     };
     return (
-        <div className={
-            'grid grid-cols-[minmax(440px,_0px)_minmax(700px,_1fr)_minmax(440px,_0px)]'
-        }>
-            {/* Left bar */}
-            <div className='flex justify-center h-[100vh] mt-[20px]'>
-                <div id="left" className='fixed'>
-                    <Profile badges={badges} user={user} />
-                    <ListeServeur user={user}/>
-                    <br />
+        <div>
+            <div className={
+                'grid grid-cols-[minmax(440px,_0px)_minmax(700px,_1fr)_minmax(440px,_0px)]'
+            }>
+                {/* Left bar */}
+                <div className='flex justify-center h-[100vh] mt-[20px]'>
+                    <div id="left" className='fixed'>
+                        <Profile badges={badges} user={user} />
+                        <ListeServeur user={user} />
+                        <br />
+                    </div>
                 </div>
-            </div>
 
 
-            {/* Post */}
-            <div id="post" className='flex justify-center'>
-                <div>
-                    <SendPost badges={badges} user={user} />
-                    <Posts />
+                {/* Post */}
+                <div id="post" className='flex justify-center'>
+                    <div>
+                        <SendPost badges={badges} user={user} />
+                        <Posts />
+                    </div>
                 </div>
-            </div>
 
-            {/* right bar */}
-            <div className='flex h-[100vh] justify-center items-start mt-[20px]'>
-                <div id='right' className='fixed'>
-                    <News />
-                    <Logs />
+                {/* right bar */}
+                <div className='flex h-[100vh] justify-center items-start mt-[20px]'>
+                    <div id='right' className='fixed'>
+                        <News />
+                        <Logs />
+                    </div>
                 </div>
             </div>
+            {/* S'il y a une erreur */}
+            {
+                true ?
+                    (
+                        <div className='bg-red-500 relative'>
+                            <h1>{"dqsdqs"}</h1>
+                        </div>
+                    ) : (
+                        <></>
+                    )
+            }
         </div>
     );
 };

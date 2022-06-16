@@ -18,7 +18,7 @@ const Banner = () => {
       .catch((err) => {
         console.log(err);
         setBannerURL(
-          "https://leerob.io/static/images/turborepo-design-system-monorepo/banner.png"
+          `${API_URL}/api/user/avatar/default.jpg`
         );
       });
   }, [userID]);
