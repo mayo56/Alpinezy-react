@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router-dom";
+import Channel from "./Pages/Channel";
 import Home from "./Pages/Home";
 import Login from "./Pages/Login";
 import ParamterController from "./Pages/parametres/ParamterController";
@@ -22,6 +23,11 @@ function App() {
       <Route path="/thread" element={<Thread />}/>
       <Route path="/profile/:id" element={<Profile />}/>
       <Route path="/paramters/:id" element={<ParamterController />}/>
+
+      {/* Partie message */}
+      <Route path="/guild/:idGuild">
+        <Route path=":idChannel" element={<Channel />}/>
+      </Route>
     </Routes>
   );
 };

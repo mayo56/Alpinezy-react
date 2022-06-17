@@ -7,7 +7,7 @@ import { BrowserRouter } from 'react-router-dom';
 ///////////////////////////////////////////////--------------
 //  Socket.io  //
 import { io } from 'socket.io-client';
-const socket = io("wss://websocket.alpinezy.com", {extraHeaders: {"Access-Control-Allow-Origin":"*"}});
+export const socket = io("wss://websocket.alpinezy.com", {extraHeaders: {"Access-Control-Allow-Origin":"*"}});
 socket.on("connect", () => {
   console.log(socket.id)
   socket.on('hello', (id, message) => {
