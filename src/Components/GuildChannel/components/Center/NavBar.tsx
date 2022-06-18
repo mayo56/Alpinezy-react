@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { Liste } from '../../../Thread/ThreadController';
 
-const NavBar = () => {
+const NavBar = (props:{guild:Liste|null}) => {
+    const [guild] = useState<Liste|null>(props.guild)
+    console.warn(guild?.name)
     return (
         <div className='grid h-[40px] mt-[20px] ml-[10px] grid-cols-[40px_60px_minmax(200px,_1fr)]'>
 
@@ -39,7 +42,10 @@ const NavBar = () => {
             </div>
 
             {/* Bar avec nom guild et channel */}
-            <div className='bg-[#1A4059] rounded-lg'></div>
+            <div className='bg-[#1A4059] rounded-lg text-white p-[5px] pl-[10px] flex justify-start items-center'>
+                <h1 className='font-bold'>{guild?.name}:</h1>
+                <h6 className='italic ml-[5px]'>{guild?.id}</h6>
+            </div>
 
         </div>
     );

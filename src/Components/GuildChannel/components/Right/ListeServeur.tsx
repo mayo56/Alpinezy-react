@@ -5,7 +5,7 @@ const ListeServeur = () => {
 
     return (
         <div className='w-full h-full flex justify-center items-start'>
-            <div className='grid grid-rows-[35px_auto]'>
+            <div className='grid grid-rows-[32px_auto]'>
                 {/* Boutons */}
                 <div className='m-auto flex w-[60%] justify-between font-bold'>
                     <h1 className={ListeSelect === 0 ?
@@ -21,7 +21,7 @@ const ListeServeur = () => {
                 </div>
 
                 {/* Liste des serveur */}
-                <div className='w-[350px] bg-[#1A4059] rounded-lg h-[425px]'>
+                <div className='w-[350px] bg-[#1A4059] rounded-lg h-[435px]'>
                     <h1>dsjdlksj</h1>
                 </div>
             </div>
