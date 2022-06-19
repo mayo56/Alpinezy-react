@@ -6,7 +6,6 @@ const ButtomBar = () => {
             <textarea
             placeholder='Envoyer un message !'
             className='p-[5px] bg-gray-500 text-white m-auto w-full min-h-[35px] max-h-[35px] rounded-lg resize-none outline-none' />
-            
         </div>
     );
 };
