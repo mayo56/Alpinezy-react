@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { API_URL } from '../../App';
 import ListeServeur from './LeftBar/ListeServeur';
 import Profile from './LeftBar/Profile';
@@ -30,6 +31,7 @@ const ThreadController = () => {
     const [badges, setBadges] = useState<badges[] | null>(null);
     const [compteur, setCompteur] = useState(0);
 
+    const nav = useNavigate();
     const getUser = async () => {
         await axios({
             method: 'get',
@@ -40,7 +42,7 @@ const ThreadController = () => {
         }).then(res => {
             if (res.data.error) {
                 localStorage.clear();
-                window.location.href = "/login/signin";
+                nav("/login/signin");
             };
             setUser(res.data.user[0]);
         })
