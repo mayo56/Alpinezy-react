@@ -25,7 +25,6 @@ const ListeServeur = (props: { user: USER | null }) => {
         }).then(res => {
             setListeServeur(res.data);
             console.warn("Liste server load.")
-            console.log(res.data, "serveurs", ListeServeur);
         }).catch(err => {
             console.log(err);
         })
@@ -44,7 +43,6 @@ const ListeServeur = (props: { user: USER | null }) => {
         }).then(res => {
             setListeMessage(res.data);
             console.warn("Liste message load")
-            console.log(res.data, "message", ListeMessage)
         }).catch(err => {
             console.log(err);
         })
@@ -56,7 +54,6 @@ const ListeServeur = (props: { user: USER | null }) => {
         getListeServeur();
         setCompteur(true);
     };
-    console.log(ListeMessage, ListeServeur)
     return (
         <div className=''>
             <div className='flex text-white justify-between m-auto w-[200px]'>

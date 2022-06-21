@@ -70,7 +70,7 @@ const GuildChannelController = (props: { params: { idGuild: string, idChannel: s
         getUser();
         getGuild();
     }, [])
-    if (user && compteur === 0) {
+    if (user && guild && compteur === 0) {
         if (!user.serveur.split(/,/g).includes(props.params.idGuild)) navigate("/thread");
         if (props.params.idChannel !== "home" && !guild?.channels.split(/,/g).includes(props.params.idChannel)) navigate(`/guild/${props.params.idGuild}/home`);
         getChannels();
@@ -79,7 +79,7 @@ const GuildChannelController = (props: { params: { idGuild: string, idChannel: s
     return (
         <div className='grid grid-cols-[auto_minmax(400px,_0px)]'>
             <CenterController user={user} guild={guild} channels={channels} thisChannel={props.params.idChannel} />
-            <RightController user={user} guild={guild} channels={channels} thisChannel={props.params.idChannel} />
+            <RightController user={user} guild={guild} channels={channels} thisChannel={props.params.idChannel} thisGuild={props.params.idGuild} />
         </div>
     );
 };
