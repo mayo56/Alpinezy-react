@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { Liste } from '../../../Thread/ThreadController';
 import { channels } from '../../GuildChannelController';
 
-const NavBar = (props:{guild:Liste|null, channels:channels[]|null, thisChannel:string}) => {
+const NavBar = (props: { guild: Liste | null, channels: channels[] | null, thisChannel: string }) => {
     return (
         <div className='grid h-[40px] mt-[20px] ml-[10px] grid-cols-[40px_60px_minmax(200px,_1fr)]'>
 
@@ -12,7 +12,7 @@ const NavBar = (props:{guild:Liste|null, channels:channels[]|null, thisChannel:s
                 <NavLink to={"/thread"}>
                     <svg className='w-[40px] bg-[#1A4059] hover:bg-[#325D79] p-[5px] rounded-lg' viewBox='0 0 39.434 39.434'>
                         <path
-                        d="M39.434,20.718c0,1.104-0.895,2-2,2c-0.004,0-0.012,0-0.02,0h-3.805v10.637c0,1.104-0.896,2-2,2h-6.568
+                            d="M39.434,20.718c0,1.104-0.895,2-2,2c-0.004,0-0.012,0-0.02,0h-3.805v10.637c0,1.104-0.896,2-2,2h-6.568
                         c-1.104,0-2-0.896-2-2v-5.638c0-1.838-1.496-3.333-3.333-3.333c-1.838,0-3.334,1.495-3.334,3.333v5.638c0,1.104-0.896,2-2,2H7.805
                         c-1.104,0-2-0.896-2-2V22.718H2c-0.844,0-1.598-0.528-1.882-1.322c-0.285-0.795-0.043-1.682,0.606-2.22L18.432,4.538
                         c0.74-0.611,1.81-0.611,2.549,0L38.526,19.04C39.072,19.398,39.434,20.016,39.434,20.718z" fill='white' />
@@ -23,7 +23,7 @@ const NavBar = (props:{guild:Liste|null, channels:channels[]|null, thisChannel:s
             {/* Bouton Paramètres */}
             <div className='m-auto'>
                 <NavLink to={"/parameter/1"}>
-                <svg className='w-[40px] bg-[#1A4059] hover:bg-[#325D79] p-[5px] rounded-lg' viewBox='0 0 380 380'>
+                    <svg className='w-[40px] bg-[#1A4059] hover:bg-[#325D79] p-[5px] rounded-lg' viewBox='0 0 380 380'>
                         <path d='M344.123,217.463l-14.211-8.205c0.858-6.297,1.313-12.724,1.313-19.258c0-6.534-0.455-12.961-1.313-19.258l14.211-8.205
                         c20.467-11.817,27.481-37.99,15.663-58.458l-10.482-18.157c-11.817-20.469-37.989-27.482-58.458-15.664l-14.219,8.21
                         c-10.108-7.862-21.315-14.377-33.348-19.284V42.796C243.278,19.159,224.117,0,200.482,0h-20.964
@@ -41,9 +41,9 @@ const NavBar = (props:{guild:Liste|null, channels:channels[]|null, thisChannel:s
             </div>
 
             {/* Bar avec nom guild et channel */}
-            <div className='bg-[#1A4059] rounded-lg text-white p-[5px] pl-[10px] flex justify-start items-center'>
-                <h1 className='font-bold'>{props.guild?.name}:</h1>
-                <h6 className='italic ml-[5px]'>{props.thisChannel !== "home" ? props.channels?.[0]?.name : "Home"}</h6>
+            <div className='bg-[#1A4059] rounded-lg text-white p-[5px] pl-[10px] flex justify-start items-center break-words truncate'>
+                <h1 className='font-bold truncate'>{props.guild?.name}:</h1>
+                <h6 className='italic ml-[5px] truncate'>{props.thisChannel !== "home" ? props.channels?.[0]?.name : "Home"}</h6>
             </div>
         </div>
     );

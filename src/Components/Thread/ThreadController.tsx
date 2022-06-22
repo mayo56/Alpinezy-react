@@ -102,17 +102,6 @@ const ThreadController = () => {
                     </div>
                 </div>
             </div>
-            {/* S'il y a une erreur */}
-            {
-                true ?
-                    (
-                        <div className='bg-red-500 relative'>
-                            <h1>{"dqsdqs"}</h1>
-                        </div>
-                    ) : (
-                        <></>
-                    )
-            }
         </div>
     );
 };

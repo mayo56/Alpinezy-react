@@ -9,11 +9,11 @@ import RightController from './components/Right/RightController';
 export type channels = {
     id:number, name:string, type:string
 }
-
 const GuildChannelController = (props: { params: { idGuild: string, idChannel: string } }) => {
     const [user, setUser] = useState<USER | null>(null);
     const [guild, setGuild] = useState<Liste | null>(null);
     const [channels, setChannels] = useState<channels[] | null>(null);
+    const [allUsers, setAllUsers] = useState<USER[] | null>(null);
     const [compteur, setCompteur] = useState(0);
 
     const navigate = useNavigate();
@@ -65,6 +65,20 @@ const GuildChannelController = (props: { params: { idGuild: string, idChannel: s
             setChannels(res.data);
             console.warn(res.data)
         })
+    };
+    const getAllUsers = async () => {
+        await axios({
+            method:"post",
+            url: `${API_URL}/api/user/userslist`,
+            headers:{
+                "Authorization": localStorage.getItem("Alpinezy") as string
+            },
+            data:{
+                users: guild?.members
+            }
+        }).then(res => {
+            setAllUsers(res.data);
+        })
     }
     useEffect(() => {
         getUser();
@@ -74,11 +88,13 @@ const GuildChannelController = (props: { params: { idGuild: string, idChannel: s
         if (!user.serveur.split(/,/g).includes(props.params.idGuild)) navigate("/thread");
         if (props.params.idChannel !== "home" && !guild?.channels.split(/,/g).includes(props.params.idChannel)) navigate(`/guild/${props.params.idGuild}/home`);
         getChannels();
+        getAllUsers();
         setCompteur(1)
     }
+    console.log(guild)
     return (
         <div className='grid grid-cols-[auto_minmax(400px,_0px)]'>
-            <CenterController user={user} guild={guild} channels={channels} thisChannel={props.params.idChannel} />
+            <CenterController user={user} guild={guild} allUsers={allUsers} channels={channels} thisChannel={props.params.idChannel} />
             <RightController user={user} guild={guild} channels={channels} thisChannel={props.params.idChannel} thisGuild={props.params.idGuild} />
         </div>
     );
