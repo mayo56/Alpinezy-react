@@ -48,6 +48,7 @@ const Messages = (props: { guild: Liste | null, thisChannel: string, allUsers: U
                 messages?.map((e, index) => {
                     const member = props.allUsers?.find(a => a.id === Number(e.author));
                     const content = e.content.split(/\n/);
+                    console.log(member, props.allUsers, props.guild)
                     return (
                         <div key={index.toString()} className='ml-[10px] h-auto text-white w-auto'>
                             <div className='grid grid-cols-[60px_auto] mt-[2px] min-h-[60px]'>

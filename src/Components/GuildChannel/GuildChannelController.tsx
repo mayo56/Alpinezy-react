@@ -31,7 +31,6 @@ const GuildChannelController = (props: { params: { idGuild: string, idChannel: s
                 window.location.href = "/login/signin";
             } else
                 setUser(res.data.user[0]);
-                console.log("User loaded.")
         })
     },[]);
     const getGuild = useCallback(async () => {
@@ -50,7 +49,6 @@ const GuildChannelController = (props: { params: { idGuild: string, idChannel: s
                 window.location.href = "/login/signin";
             } else
                 setGuild(res.data[0]);
-                console.warn("Server loaded.")
         })
     },[]);
     const getChannels = async () => {
@@ -65,7 +63,6 @@ const GuildChannelController = (props: { params: { idGuild: string, idChannel: s
             }
         }).then(res => {
             setChannels(res.data);
-            console.warn("All channels loaded.")
         })
     };
     const getAllUsers = async () => {
@@ -80,7 +77,6 @@ const GuildChannelController = (props: { params: { idGuild: string, idChannel: s
             }
         }).then(res => {
             setAllUsers(res.data);
-            console.warn("All users loaded")
         })
     }
     useEffect(() => {
