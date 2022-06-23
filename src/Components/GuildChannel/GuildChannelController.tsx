@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { API_URL } from '../../App';
 import { Liste, USER } from '../Thread/ThreadController';
@@ -18,7 +18,7 @@ const GuildChannelController = (props: { params: { idGuild: string, idChannel: s
 
     const navigate = useNavigate();
 
-    const getUser = async () => {
+    const getUser = useCallback( async () => {
         await axios({
             method: 'get',
             url: `${API_URL}/api/user/getWithAuth/${localStorage.getItem('AlpinezyID')}`,
@@ -31,9 +31,10 @@ const GuildChannelController = (props: { params: { idGuild: string, idChannel: s
                 window.location.href = "/login/signin";
             } else
                 setUser(res.data.user[0]);
+                console.log("User loaded.")
         })
-    };
-    const getGuild = async () => {
+    },[]);
+    const getGuild = useCallback(async () => {
         await axios({
             method: 'post',
             url: `${API_URL}/api/user/guildlist`,
@@ -49,8 +50,9 @@ const GuildChannelController = (props: { params: { idGuild: string, idChannel: s
                 window.location.href = "/login/signin";
             } else
                 setGuild(res.data[0]);
+                console.warn("Server loaded.")
         })
-    };
+    },[]);
     const getChannels = async () => {
         await axios({
             method:"post",
@@ -63,7 +65,7 @@ const GuildChannelController = (props: { params: { idGuild: string, idChannel: s
             }
         }).then(res => {
             setChannels(res.data);
-            console.warn(res.data)
+            console.warn("All channels loaded.")
         })
     };
     const getAllUsers = async () => {
@@ -78,11 +80,14 @@ const GuildChannelController = (props: { params: { idGuild: string, idChannel: s
             }
         }).then(res => {
             setAllUsers(res.data);
+            console.warn("All users loaded")
         })
     }
     useEffect(() => {
-        getUser();
-        getGuild();
+        return  () => {
+            getUser();
+            getGuild();
+        }
     }, [])
     if (user && guild && compteur === 0) {
         if (!user.serveur.split(/,/g).includes(props.params.idGuild)) navigate("/thread");
@@ -91,7 +96,6 @@ const GuildChannelController = (props: { params: { idGuild: string, idChannel: s
         getAllUsers();
         setCompteur(1)
     }
-    console.log(guild)
     return (
         <div className='grid grid-cols-[auto_minmax(400px,_0px)]'>
             <CenterController user={user} guild={guild} allUsers={allUsers} channels={channels} thisChannel={props.params.idChannel} />

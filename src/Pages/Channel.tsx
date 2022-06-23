@@ -10,7 +10,7 @@ const Channel = () => {
     },5000)
     useEffect(() => {
         VerifToken(localStorage.getItem("Alpinezy"))
-    })
+    },[])
     return (
         <div>
             <GuildChannelController params={params}/>            

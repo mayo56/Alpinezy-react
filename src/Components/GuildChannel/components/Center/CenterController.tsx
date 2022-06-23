@@ -12,10 +12,10 @@ const CenterController = (props: { user: USER | null, guild: Liste | null, chann
             {
                 props.thisChannel !== "home" ?
                     (
-                        <div className='grid grid-rows-[80px_auto_80px]'>
+                        <div className='grid grid-rows-[80px_minmax(800px,_0px)_80px]'>
                             <NavBar guild={props.guild} channels={props.channels} thisChannel={props.thisChannel} />
                             <Messages guild={props.guild} thisChannel={props.thisChannel} allUsers={props.allUsers} />
-                            <ButtomBar />
+                            <ButtomBar thisChannel={props.thisChannel} />
                         </div>
                     ) : (
                         <div className='grid grid-rows-[80px_auto]'>
