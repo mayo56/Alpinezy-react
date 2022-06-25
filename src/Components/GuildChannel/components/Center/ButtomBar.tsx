@@ -24,7 +24,7 @@ const ButtomBar = (props:{thisChannel:string}) => {
         })
     }
     return (
-        <div className='bg-green-500 ml-[10px] h-[40px] mt-[20px] grid grid-cols-[auto_50px]'>
+        <div className='ml-[10px] h-[40px] mt-[20px] grid grid-cols-[auto_50px]'>
             <textarea
             placeholder='Envoyer un message !'
             value={message}

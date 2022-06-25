@@ -20,7 +20,7 @@ const CenterController = (props: { user: USER | null, guild: Liste | null, chann
                     ) : (
                         <div className='grid grid-rows-[80px_auto]'>
                             <NavBar guild={props.guild} channels={props.channels} thisChannel={props.thisChannel} />
-                            <Home guild={props.guild} />
+                            <Home guild={props.guild} allUsers={props.allUsers} />
                         </div>
                     )
             }

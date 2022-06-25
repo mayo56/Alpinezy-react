@@ -1,13 +1,15 @@
 import axios from 'axios';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { socket } from '../..';
 import { API_URL } from '../../App';
 import { Liste, USER } from '../Thread/ThreadController';
 import CenterController from './components/Center/CenterController';
+import { MessagesSocket } from './components/Center/Messages';
 import RightController from './components/Right/RightController';
 
 export type channels = {
-    id:number, name:string, type:string
+    id: number, name: string, type: string; notif: boolean;
 }
 const GuildChannelController = (props: { params: { idGuild: string, idChannel: string } }) => {
     const [user, setUser] = useState<USER | null>(null);
@@ -18,7 +20,7 @@ const GuildChannelController = (props: { params: { idGuild: string, idChannel: s
 
     const navigate = useNavigate();
 
-    const getUser = useCallback( async () => {
+    const getUser = useCallback(async () => {
         await axios({
             method: 'get',
             url: `${API_URL}/api/user/getWithAuth/${localStorage.getItem('AlpinezyID')}`,
@@ -32,7 +34,7 @@ const GuildChannelController = (props: { params: { idGuild: string, idChannel: s
             } else
                 setUser(res.data.user[0]);
         })
-    },[]);
+    }, []);
     const getGuild = useCallback(async () => {
         await axios({
             method: 'post',
@@ -50,16 +52,16 @@ const GuildChannelController = (props: { params: { idGuild: string, idChannel: s
             } else
                 setGuild(res.data[0]);
         })
-    },[]);
+    }, []);
     const getChannels = async () => {
         await axios({
-            method:"post",
+            method: "post",
             url: `${API_URL}/api/user/channellist`,
-            headers:{
+            headers: {
                 'Authorization': `${localStorage.getItem('Alpinezy')}`
             },
             data: {
-                channels:guild?.channels
+                channels: guild?.channels
             }
         }).then(res => {
             setChannels(res.data);
@@ -67,12 +69,12 @@ const GuildChannelController = (props: { params: { idGuild: string, idChannel: s
     };
     const getAllUsers = async () => {
         await axios({
-            method:"post",
+            method: "post",
             url: `${API_URL}/api/user/userslist`,
-            headers:{
+            headers: {
                 "Authorization": localStorage.getItem("Alpinezy") as string
             },
-            data:{
+            data: {
                 users: guild?.members
             }
         }).then(res => {
@@ -80,9 +82,17 @@ const GuildChannelController = (props: { params: { idGuild: string, idChannel: s
         })
     }
     useEffect(() => {
-        return  () => {
+        return () => {
             getUser();
             getGuild();
+            socket.on("messageCreate", (message: MessagesSocket) => {
+                if (message.channelID === props.params.idChannel) return;
+                setChannels((e) => {
+                    const index = e!.findIndex(a => a.id === Number(message.channelID));
+                    e![index].notif = true;
+                    return e;
+                });
+            })
         }
     }, [])
     if (user && guild && compteur === 0) {

@@ -75,14 +75,6 @@ const Posts = () => {
             {
                 post.map((onePost, index) => {
                     const date = new Date(Number(onePost.timestamp))
-                    /**
-                     * "Date: "+date.getDate()+
-                        "/"+(date.getMonth()+1)+
-                        "/"+date.getFullYear()+
-                        " "+date.getHours()+
-                        ":"+date.getMinutes()+
-                        ":"+date.getSeconds());
-                     */
                     const DateReturned = `${date.getDate()}/${(date.getMonth() + 1)}/${date.getFullYear()} à ${date.getHours()}:${date.getMinutes() < 10 ? ("0" + date.getMinutes()) : date.getMinutes()}`
                     return (
                         <div key={onePost.id}>

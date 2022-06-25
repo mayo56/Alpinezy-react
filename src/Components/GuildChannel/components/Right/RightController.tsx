@@ -6,7 +6,7 @@ import ListeServeur from './ListeServeur';
 
 const RightController = (props : {user:USER|null, guild:Liste|null, channels:channels[]|null, thisChannel:string, thisGuild:string}) => {
     return (
-        <div className='h-screen text-white grid grid-rows-[50%_50%] overflow-scroll'>
+        <div className='h-screen text-white grid grid-rows-[50%_50%] overflow-auto'>
             <ListChannel chanels={props.channels} thisChannel={props.thisChannel} thisGuild={props.thisGuild} />
             <ListeServeur />
         </div>

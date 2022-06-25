@@ -1,7 +1,8 @@
 import React from 'react';
-import { Liste } from '../../../Thread/ThreadController';
+import { API_URL } from '../../../../App';
+import { Liste, USER } from '../../../Thread/ThreadController';
 
-const Home = (props: { guild: Liste | null }) => {
+const Home = (props: { guild: Liste | null, allUsers:USER[] | null }) => {
     return (
         <div className={props.guild ? 'text-white' : 'animate-pulse'}>
             <img
@@ -11,6 +12,21 @@ const Home = (props: { guild: Liste | null }) => {
             <div className='flex justify-center'>
                 <p>{props.guild?.members.split(/,/g).length} membres.</p>
                 <p className='ml-[10px]'>0 en ligne</p>
+            </div>
+
+            {/* Users infos */}
+            <div className=''>
+               {
+                props.allUsers?.map(e => {
+                    return (
+                        <div className='flex m-auto bg-slate-900 hover:bg-white rounded-lg'>
+                            <img className='w-[30px] rounded-full'
+                            src={`${API_URL}/api/user/avatar/${e.avatarurl}`} alt="PP" />
+                            <h1 className='ml-[10px]'>{e.username}#{e.discriminator}</h1>
+                        </div>
+                    )
+                })
+               }
             </div>
         </div>
     );
