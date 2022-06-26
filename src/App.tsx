@@ -22,7 +22,7 @@ function App() {
       {/* Coeur de l'app */}
       <Route path="/thread" element={<Thread />}/>
       <Route path="/profile/:id" element={<Profile />}/>
-      <Route path="/paramters/:id" element={<ParamterController />}/>
+      <Route path="/parametres/:id" element={<ParamterController />}/>
 
       {/* Partie message */}
       <Route path="/guild/:idGuild">
