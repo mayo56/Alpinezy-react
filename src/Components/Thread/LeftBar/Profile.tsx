@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import { API_URL } from '../../../App';
 import { USER } from "../ThreadController"
 import { badges } from "../ThreadController";
@@ -130,9 +131,10 @@ const Profile = (props: { user: USER | null, badges: badges[] | null }) => {
             {/* Menu de boutons */}
             <div className='flex justify-evenly w-[400px] text-white -translate-y-[40px]'>
                 {/* Paramètres */}
-                <div className='hover:bg-[#101f2a] rounded-lg p-[5px] hover:cursor-pointer'>
-                    <svg className='w-[20px] h-[20px]' viewBox='0 0 380 380'>
-                        <path d='M344.123,217.463l-14.211-8.205c0.858-6.297,1.313-12.724,1.313-19.258c0-6.534-0.455-12.961-1.313-19.258l14.211-8.205
+                <NavLink to={"/parametres/home"} >
+                    <div className='hover:bg-[#101f2a] rounded-lg p-[5px]'>
+                        <svg className='w-[20px] h-[20px]' viewBox='0 0 380 380'>
+                            <path d='M344.123,217.463l-14.211-8.205c0.858-6.297,1.313-12.724,1.313-19.258c0-6.534-0.455-12.961-1.313-19.258l14.211-8.205
                         c20.467-11.817,27.481-37.99,15.663-58.458l-10.482-18.157c-11.817-20.469-37.989-27.482-58.458-15.664l-14.219,8.21
                         c-10.108-7.862-21.315-14.377-33.348-19.284V42.796C243.278,19.159,224.117,0,200.482,0h-20.964
                         c-23.635,0-42.796,19.159-42.796,42.796v16.387c-12.034,4.907-23.24,11.422-33.348,19.284l-14.219-8.21
@@ -145,21 +147,25 @@ const Profile = (props: { user: USER | null, badges: badges[] | null }) => {
                         c-30.725,0-55.634-24.909-55.634-55.634c0-30.725,24.909-55.634,55.634-55.634s55.634,24.909,55.634,55.634
                         C245.634,220.725,220.725,245.634,190,245.634z' fill='white' />
 
-                    </svg>
-                </div>
+                        </svg>
+                    </div>
+                </NavLink>
+
                 {/* Profile */}
-                <div className='hover:bg-[#101f2a] rounded-lg p-[5px] hover:cursor-pointer'>
-                    <svg className='w-[20px]' viewBox='0 0 24 24'>
-                        <path d='M11.8372 11.1735C14.26 11.1735 16.2236 9.2099
+                <NavLink to={"/parametres/profile"} >
+                    <div className='hover:bg-[#101f2a] rounded-lg p-[5px] hover:cursor-pointer'>
+                        <svg className='w-[20px]' viewBox='0 0 24 24'>
+                            <path d='M11.8372 11.1735C14.26 11.1735 16.2236 9.2099
                         16.2236 6.78718C16.2236 4.36445 14.26 2.3999 11.8372 2.3999C9.41452 2.3999
                         7.44998 4.36445 7.44998 6.78718C7.4418 9.20172 9.3918 11.1654 11.8063
                         11.1735C11.8172 11.1735 11.8272 11.1735 11.8372 11.1735Z' stroke='white' fill='white' />
-                        <path d='M11.8445 21.6618C8.15273 21.6618 5 21.0873
+                            <path d='M11.8445 21.6618C8.15273 21.6618 5 21.0873
                         5 18.7865C5 16.4858 8.13273 14.3618 11.8445 14.3618C15.5364
                         14.3618 18.6891 16.4652 18.6891 18.766C18.6891 21.0658 15.5564
                         21.6618 11.8445 21.6618Z' stroke='white' fill='white' />
-                    </svg>
-                </div>
+                        </svg>
+                    </div>
+                </NavLink>
                 {/* Arbre de compétence */}
                 <div className='hover:bg-[#101f2a] rounded-lg p-[5px] hover:cursor-pointer'>
                     <svg className='w-[20px] h-[20px]' viewBox='0 0 100 100'>
