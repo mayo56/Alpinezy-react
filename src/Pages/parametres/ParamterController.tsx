@@ -14,7 +14,7 @@ const ParamterController = () => {
     return (
         <div className='grid grid-cols-[200px_auto] mt-[10px] text-white'>
             <LeftBar />
-            <div>
+            <div className='ml-[10px]'>
                 {
                     AllPageId[AllParamId.findIndex(e => e === param.id.toLocaleLowerCase())]
                 }

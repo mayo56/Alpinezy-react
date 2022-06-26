@@ -6,14 +6,13 @@ const LeftBar = () => {
         "home", "profile"
     ])
     return (
-        <div className='overflow-auto ml-[10px]'>
+        <div className='overflow-auto ml-[10px] h-[95vh]'>
             <div>
                 {
-                    menu.map(name => {
-                        console.log(name)
+                    menu.map((name, index) => {
                         return (
                             <NavLink to={"/parametres/" + name} >
-                                <div className='bg-sky-500 hover:bg-red-300 mt-[2px] rounded-lg'>
+                                <div key={index} className='hover:bg-gray-500 mt-[2px] rounded-lg'>
                                     <h1 className='text-center font-bold'>{name}</h1>
                                 </div>
                             </NavLink>
