@@ -16,6 +16,7 @@ export type MessagesSocket = {
 const Messages = (props: { guild: Liste | null, thisChannel: string, allUsers: USER[] | null }) => {
     const [messages, setMessages] = useState<MessagesYay[] | null>(null);
     const [compteur, setCompteur] = useState(0);
+    const [loadMessage] = useState([0,1,2,3,4,5,6,7,8,9,10]);
 
     const getMessage = async () => {
         await axios({
@@ -45,8 +46,9 @@ const Messages = (props: { guild: Liste | null, thisChannel: string, allUsers: U
     useEffect(() => {
         document.getElementById('messages')?.scrollTo(0, Number(document.getElementById("messages")?.clientHeight));
     }, [messages])
-    if (messages) {
 
+    //S'il y a des messages
+    if (messages) {
         return (
             <div id="messages" className='overflow-auto h-[100%]'>
                 {
@@ -95,7 +97,27 @@ const Messages = (props: { guild: Liste | null, thisChannel: string, allUsers: U
         );
     } else {
         return (
-            <></>
+            <div className='overflow-auto h-[100%] animate-pulse'>
+                {
+                    loadMessage.map(e => {
+                        return (
+                            <div key={e} className='ml-[10px] h-auto text-white hover:bg-[#2A2A3F] w-auto'>
+                                <div className='grid grid-cols-[60px_auto] mt-[2px] min-h-[60px]'>
+                                    {/* PP */}
+                                    <div className='w-[42px] h-[42px] bg-gray-500 ml-auto mt-[5px] mr-auto rounded-full object-cover object-center' />
+                                    <div className='ml-[5px] h-auto'>
+                                        <div className='flex justify-start items-baseline'>
+                                            <h1 className='bg-red-500 h-[15px] rounded-full w-[40px]'></h1>
+                                            <h1 className='ml-[5px] h-[12px] rounded-lg w-[100px] bg-gray-500'></h1>
+                                        </div>
+                                        <h1 className=' mt-[10px] break-all rounded-full bg-sky-500 h-[15px] w-[400px]' />
+                                    </div>
+                                </div>
+                            </div>
+                        )
+                    })
+                }
+            </div>
         )
     }
 };

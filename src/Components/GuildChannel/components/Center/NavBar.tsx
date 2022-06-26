@@ -22,7 +22,7 @@ const NavBar = (props: { guild: Liste | null, channels: channels[] | null, thisC
 
             {/* Bouton Paramètres */}
             <div className='m-auto'>
-                <NavLink to={"/parameter/1"}>
+                <NavLink to={"/paramters/1"}>
                     <svg className='w-[40px] bg-[#1A4059] hover:bg-[#325D79] p-[5px] rounded-lg' viewBox='0 0 380 380'>
                         <path d='M344.123,217.463l-14.211-8.205c0.858-6.297,1.313-12.724,1.313-19.258c0-6.534-0.455-12.961-1.313-19.258l14.211-8.205
                         c20.467-11.817,27.481-37.99,15.663-58.458l-10.482-18.157c-11.817-20.469-37.989-27.482-58.458-15.664l-14.219,8.21
