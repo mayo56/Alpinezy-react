@@ -52,7 +52,7 @@ const SendPost = (props: { user: USER | null, badges: badges[] | null}) => {
                     <NavLink to={`/profile/${localStorage.getItem("AlpinezyID")}`}
                         className='grid grid-cols-2 w-[210px] ml-[20px] mt-[20px] h-[60px] row-span-1 rounded-lg p-[5px] hover:bg-[#407496] hover:shadow-lg hover:cursor-pointer'>
 
-                        <img src={user ? `${API_URL}/api/user/avatar/${user?.avatarurl}` : ""} alt="pp" className='w-[50px] h-[50px] ml-[20px] rounded-full' />
+                        <img src={user ? `${API_URL}/api/user/avatar/${user?.avatarurl}` : ""} alt="pp" className='w-[50px] h-[50px] object-cover object-center ml-[20px] rounded-full' />
                         <div className='text-white'>
                             <h1 className='font-bold text-[18px]'>{user?.username}</h1>
                             <div className='flex'>

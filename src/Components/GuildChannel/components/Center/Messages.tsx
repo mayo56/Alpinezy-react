@@ -45,52 +45,59 @@ const Messages = (props: { guild: Liste | null, thisChannel: string, allUsers: U
     useEffect(() => {
         document.getElementById('messages')?.scrollTo(0, Number(document.getElementById("messages")?.clientHeight));
     }, [messages])
-    return (
-        <div id="messages" className='overflow-auto h-[100%]'>
-            {
-                messages?.map((e, index) => {
-                    //membre
-                    const member = props.allUsers?.find(a => a.id === Number(e.author));
-                    //message avec saut de ligne
-                    const content = e.content.split(/\n/);
-                    //timestamp
-                    const date = new Date(Number(e.timestamp))
-                    const DateReturned = `${date.getDate()}/${(date.getMonth() + 1)}/${date.getFullYear()} à ${date.getHours()}:${date.getMinutes() < 10 ? ("0" + date.getMinutes()) : date.getMinutes()}`
-                    return (
-                        <div key={index.toString()} className='ml-[10px] h-auto text-white hover:bg-[#2A2A3F] w-auto'>
-                            <div className='grid grid-cols-[60px_auto] mt-[2px] min-h-[60px]'>
-                                <img src={`${API_URL}/api/user/avatar/${member?.avatarurl}`} alt="PP"
-                                    className='w-[50px] ml-auto mt-[5px] mr-auto rounded-full' />
-                                <div className='ml-[5px] h-auto'>
-                                    <div className='flex justify-start items-baseline'>
-                                        <h1 className='text-red-500'>{member?.username}</h1>
-                                        <h1 className='ml-[5px] text-[12px] text-gray-500'>{DateReturned}</h1>
+    if (messages) {
+
+        return (
+            <div id="messages" className='overflow-auto h-[100%]'>
+                {
+                    messages?.map((e, index) => {
+                        //membre
+                        const member = props.allUsers?.find(a => a.id === Number(e.author));
+                        //message avec saut de ligne
+                        const content = e.content.split(/\n/);
+                        //timestamp
+                        const date = new Date(Number(e.timestamp))
+                        const DateReturned = `${date.getDate()}/${(date.getMonth() + 1)}/${date.getFullYear()} à ${date.getHours()}:${date.getMinutes() < 10 ? ("0" + date.getMinutes()) : date.getMinutes()}`
+                        return (
+                            <div key={index.toString()} className='ml-[10px] h-auto text-white hover:bg-[#2A2A3F] w-auto'>
+                                <div className='grid grid-cols-[60px_auto] mt-[2px] min-h-[60px]'>
+                                    <img src={`${API_URL}/api/user/avatar/${member?.avatarurl}`} alt="PP"
+                                        className='w-[42px] h-[42px] ml-auto mt-[5px] mr-auto rounded-full object-cover object-center' />
+                                    <div className='ml-[5px] h-auto'>
+                                        <div className='flex justify-start items-baseline'>
+                                            <h1 className='text-red-500'>{member?.username}</h1>
+                                            <h1 className='ml-[5px] text-[12px] text-gray-500'>{DateReturned}</h1>
+                                        </div>
+                                        <h1 className='break-all h-auto w-auto'>
+                                            {
+                                                content.length > 1 ?
+                                                    (
+                                                        content.map(e => {
+                                                            return (
+                                                                <>
+                                                                    {e}
+                                                                    <br />
+                                                                </>
+                                                            )
+                                                        })
+                                                    ) : (
+                                                        content
+                                                    )
+                                            }
+                                        </h1>
                                     </div>
-                                    <h1 className='break-all h-auto w-auto'>
-                                        {
-                                            content.length > 1 ?
-                                                (
-                                                    content.map(e => {
-                                                        return (
-                                                            <>
-                                                                {e}
-                                                                <br />
-                                                            </>
-                                                        )
-                                                    })
-                                                ) : (
-                                                    content
-                                                )
-                                        }
-                                    </h1>
                                 </div>
                             </div>
-                        </div>
-                    )
-                })
-            }
-        </div>
-    );
+                        )
+                    })
+                }
+            </div>
+        );
+    } else {
+        return (
+            <></>
+        )
+    }
 };
 
 export default Messages;

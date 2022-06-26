@@ -85,8 +85,14 @@ const GuildChannelController = (props: { params: { idGuild: string, idChannel: s
         return () => {
             getUser();
             getGuild();
+        }
+    }, [])
+    useEffect(() => {
+        return () => {
             socket.on("messageCreate", (message: MessagesSocket) => {
+                console.log("first etapa")
                 if (message.channelID === props.params.idChannel) return;
+                console.warn("New Notification !!")
                 setChannels((e) => {
                     const index = e!.findIndex(a => a.id === Number(message.channelID));
                     e![index].notif = true;
@@ -94,7 +100,7 @@ const GuildChannelController = (props: { params: { idGuild: string, idChannel: s
                 });
             })
         }
-    }, [])
+    },[])
     if (user && guild && compteur === 0) {
         if (!user.serveur.split(/,/g).includes(props.params.idGuild)) navigate("/thread");
         if (props.params.idChannel !== "home" && !guild?.channels.split(/,/g).includes(props.params.idChannel)) navigate(`/guild/${props.params.idGuild}/home`);

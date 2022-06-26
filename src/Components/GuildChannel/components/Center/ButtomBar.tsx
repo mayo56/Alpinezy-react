@@ -1,35 +1,45 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { API_URL } from '../../../../App';
 
-const ButtomBar = (props:{thisChannel:string}) => {
+const ButtomBar = (props: { thisChannel: string }) => {
     const [message, setMessage] = useState("");
     const sendMessage = async () => {
-        if (!message) return;
+        if (!message.trim()) return;
+        const LeMessage = message;
+        setMessage("");
         await axios({
-            method:"post",
-            url:`${API_URL}/api/message/send`,
-            headers:{
-                "Authorization":localStorage.getItem("Alpinezy") as string
+            method: "post",
+            url: `${API_URL}/api/message/send`,
+            headers: {
+                "Authorization": localStorage.getItem("Alpinezy") as string
             },
-            data:{
-                message:message,
-                channelID:props.thisChannel,
+            data: {
+                message: LeMessage.trim(),
+                channelID: props.thisChannel,
             }
         }).then(res => {
-            setMessage("");
             console.warn("Message envoyé avec succès !")
+            setMessage("");
         }).catch(err => {
             console.log(err)
         })
     }
+
+    document.body.onkeydown = (e) => {
+        if (e.key === "Enter") {
+            console.log("huhu");
+            sendMessage();
+        }
+    }
     return (
         <div className='ml-[10px] h-[40px] mt-[20px] grid grid-cols-[auto_50px]'>
             <textarea
-            placeholder='Envoyer un message !'
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-            className='p-[5px] bg-gray-500 text-white m-auto w-full min-h-[35px] max-h-[35px] rounded-lg resize-none outline-none' />
+                placeholder='Envoyer un message !'
+                value={message}
+                id="Message"
+                onChange={(e) => setMessage(e.target.value)}
+                className='p-[5px] bg-gray-500 text-white m-auto w-full min-h-[35px] max-h-[35px] rounded-lg resize-none outline-none' />
             <div className='bg-red-500 m-auto w-[35px] hover:cursor-pointer rounded-lg h-[35px]' onClick={() => sendMessage()}>
                 <svg className='w-[80%] h-[80%] m-auto mt-[2px]' viewBox='0 0 495.003 495.003'>
                     <path d="M164.711,456.687c0,2.966,1.647,5.686,4.266,7.072c2.617,1.385,5.799,1.207,8.245-0.468l55.09-37.616

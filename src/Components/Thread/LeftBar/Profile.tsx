@@ -22,7 +22,7 @@ const Profile = (props: { user: USER | null, badges: badges[] | null }) => {
                     'mt-[10px] ml-[10px] w-[90px] h-[90px]' : 'mt-[10px] ml-[10px] w-[90px] h-[90px] animate-pulse'
                 }>
                     <img src={user ? `${API_URL}/api/user/avatar/${user?.avatarurl}` : ""}
-                        className={"w-[90px] h-[90px] bg-gray-600 rounded-full border-2 shadow-xl"} alt='Photo_de_profile' />
+                        className={"w-[90px] h-[90px] bg-gray-600 object-cover object-center rounded-full border-2 shadow-xl"} alt='Photo_de_profile' />
                 </div>
                 {/* Username, badge et barre de progression */}
                 <div className='mr-[20px] w-[250px] mt-[20px] h-[80px] grid grid-cols-1 grid-rows-3'>
