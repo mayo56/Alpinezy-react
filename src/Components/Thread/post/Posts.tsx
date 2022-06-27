@@ -79,8 +79,10 @@ const Posts = () => {
                     return (
                         <div key={onePost.id}>
 
-                            <div className='flex'>
-                                <div className='bg-[#325D79] grid w-[620px] grid-rows-3 mt-[20px] rounded-lg p-[20px] text-white'>
+                            <div className='flex text-white'>
+                                <div
+                                className={'grid w-[620px] grid-rows-3 mt-[20px] rounded-[10px] p-[20px] text-white ' + 
+                                "bg-[rgba(23,_23,_35,_0.50)] border-solid border-[#ffffff2e] border-[1px]"}>
 
                                     {/* Top profil et date */}
                                     <div className='flex justify-between items-center'>

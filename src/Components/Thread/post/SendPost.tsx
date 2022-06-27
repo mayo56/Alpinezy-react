@@ -46,7 +46,8 @@ const SendPost = (props: { user: USER | null, badges: badges[] | null}) => {
     },[props.user, props.badges]);
     return (
         <div>
-            <div className='m-auto mt-[20px] grid grid-rows-3 rounded-lg bg-[#325D79] w-[600px] h-[350px]'>
+            <div className={'m-auto mt-[20px] grid grid-rows-3 rounded-lg bg-[#325D79] w-[600px] h-[350px] ' + 
+            "bg-[rgba(23,_23,_35,_0.35)] border-solid border-[rgba(255,_255,_255,_0.18)] border-[1px]"}>
                 {/* Profile */}
                 <div>
                     <NavLink to={`/profile/${localStorage.getItem("AlpinezyID")}`}

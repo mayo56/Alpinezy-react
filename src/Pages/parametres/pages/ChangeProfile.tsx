@@ -9,29 +9,31 @@ const ChangeProfile = () => {
     const [inputImage, setImage] = useState<File>();
     const [user, setUser] = useState<USER | null>(null);
 
-    const SendImage = async (event: React.FormEvent<HTMLFormElement>) => {
+    const SendImage = (event: React.FormEvent<HTMLFormElement>) => {
+        /**
+         * Envoie l'image et ensuite le système recharge l'user
+         */
         event.preventDefault();
         if (!inputImage) return;
         new Compressor(inputImage, {
+            width:500,
+            height:500,
+            resize:"cover",
             quality: 0.6,
             async success(resultat) {
                 const image = new FormData()
                 image.append("file", resultat)
+                console.log(resultat)
                 await axios.post(`${API_URL}/api/user/setAvatar`, image, {
                     headers: {
                         "Authorization": localStorage.getItem("Alpinezy") as string,
-                        "Access-Control-Allow-Origin": "https://api.alpinezy.com",
+                        "Access-Control-Allow-Origin": "https://beta.alpinezy.com",
                         "Content-Type": 'multipart/form-data',
                     }
                 })
                     .then(res => {
                         console.log(res.data);
-                        setUser(e => {
-                            if(!e) return null;
-                            e.avatarurl = res.data;
-                            e.username = "Nicolas"
-                            return e
-                        })
+                        getUser();
                     });
             },
             error(err) {
@@ -53,8 +55,9 @@ const ChangeProfile = () => {
     useEffect(() => {
         console.log("Huhu")
         return () => {
-            getUser()
-        }
+            getUser();
+            console.warn("User Load");
+        };
     },[]);
     return (
         <div>

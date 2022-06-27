@@ -17,7 +17,8 @@ const Profile = (props: { user: USER | null, badges: badges[] | null }) => {
     return (
         <div>
             {/* Profile */}
-            <div className='bg-[#1A4059] w-[400px] h-[150px] rounded-lg flex justify-between'>
+            <div className={'w-[400px] h-[150px] rounded-lg flex justify-between '+
+        "bg-[rgba(23,_23,_35,_0.35)] border-solid border-[rgba(255,_255,_255,_0.18)] border-[1px]"}>
                 {/* Avatar */}
                 <div className={user ?
                     'mt-[10px] ml-[10px] w-[90px] h-[90px]' : 'mt-[10px] ml-[10px] w-[90px] h-[90px] animate-pulse'

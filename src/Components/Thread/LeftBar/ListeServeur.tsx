@@ -56,7 +56,7 @@ const ListeServeur = (props: { user: USER | null }) => {
     };
     return (
         <div className=''>
-            <div className='flex text-white justify-between m-auto w-[200px]'>
+            <div className={'flex text-white justify-between m-auto w-[200px] '}>
                 {/* Boutons serveur et message */}
                 <h1 className={ListeSelect === 0 ?
                     'bg-[#447ca1] p-[5px] pr-[10px] pl-[10px] rounded-t-lg hover:cursor-pointer' :
@@ -69,7 +69,8 @@ const ListeServeur = (props: { user: USER | null }) => {
                 }
                     onClick={() => setListeSelect(1)}>Message</h1>
             </div>
-            <div className='bg-[#1A4059] overflow-y-auto w-[100%] h-[71.7vh] rounded-lg'>
+            <div className={'overflow-y-auto w-[100%] h-[71.7vh] rounded-[10px] ' + 
+            "bg-[rgba(23,_23,_35,_0.50)] border-solid border-[rgba(255,_255,_255,_0.18)] border-[1px]"}>
                 {
                     ListeMessage && ListeServeur ?
                         (
