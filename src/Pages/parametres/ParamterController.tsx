@@ -10,7 +10,7 @@ const ParamterController = () => {
     const AllPageId = [<>hey</>, <ChangeProfile />]
     useEffect(() => {
         if (!AllParamId.includes(param.id.toLocaleLowerCase())) nav("/parametres/home");
-    })
+    },[])
     return (
         <div className='grid grid-cols-[200px_auto] mt-[10px] text-white'>
             <LeftBar />

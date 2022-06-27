@@ -3,10 +3,11 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { API_URL } from '../../../App';
 import Compressor from 'compressorjs';
 import { USER } from '../../../Components/Thread/ThreadController';
+import AfficheUser from './AfficheUser';
 
 const ChangeProfile = () => {
     const [inputImage, setImage] = useState<File>();
-    const [user, setUser] = useState<USER[] | null>(null);
+    const [user, setUser] = useState<USER | null>(null);
 
     const SendImage = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -26,7 +27,9 @@ const ChangeProfile = () => {
                     .then(res => {
                         console.log(res.data);
                         setUser(e => {
-                            e![0].avatarurl = res.data;
+                            if(!e) return null;
+                            e.avatarurl = res.data;
+                            e.username = "Nicolas"
                             return e
                         })
                     });
@@ -44,26 +47,18 @@ const ChangeProfile = () => {
                 "Authorization": localStorage.getItem("Alpinezy") as string
             }
         }).then(res => {
-            setUser(res.data.user);
+            setUser(res.data.user[0]);
         })
     }, []);
     useEffect(() => {
+        console.log("Huhu")
         return () => {
             getUser()
         }
-    }, []);
+    },[]);
     return (
         <div>
-            {
-                user?.map(e => {
-                    return (
-                        <div>
-                            <h1>{e.username}#{e.discriminator}</h1>
-                            <img src={user ? `${API_URL}/api/user/avatar/${e.avatarurl}` : ""} alt="" className='w-[500px]' />
-                        </div>
-                    )
-                })
-            }
+            <AfficheUser user={user} />
             <form encType='multipart/form-data' onSubmit={e => SendImage(e)}>
                 <input type="file" name='lol' accept='image/*' className='text-green-500' onChange={e => { setImage(e.currentTarget.files![0]) }} />
                 <input type="submit" value="Submit" className='text-white' />
